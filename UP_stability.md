@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v29.6.md
+linked_to: UP_user-preferences_v29.7.md
 created: 2026-04-08
 last_reviewed: 2026-04-09
 ---

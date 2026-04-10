@@ -5,10 +5,11 @@ v29.3 | Delete 6 rules(INTERNAL_VOCAB, REPORT_FORMAT, SAVE, TOOL_PRIORITY, SKILL
 v29.4 | §OBSIDIAN hardened: MCP(obsidian) write·edit·create·delete = BLOCK(무조건 거부). read-only HARD 명시. 위반=FAIL.
 v29.5 | Add §MCP_SPEED: DC·Obs·Cowork 병목 파라미터 기본값+병렬/직렬 규칙. 14→15 lines.
 v29.6 | §MCP_SPEED overhaul: 우선순위 FS>Cowork>DC. DC→터미널·프로세스·바이너리편집전용. FS 전도구 열거. Obs=read전용(쓰기·편집→FS). Cowork=FS폴백. 도구그룹별 분리. 15→15 lines.
+v29.7 | §OBSIDIAN 볼트쓰기 DC→FS 전환(§MCP_SPEED 정합). §MCP_SPEED Cowork 폴백 범위 '세션내파일전용' 명시.
   PREV_CHANGELOG: Agent-Ops/_archive/UP_user-preferences_v28.0_EN.md
 
 ```
-# UP v29.6 — Core
+# UP v29.7 — Core
 # Rules: 15 lines. Full details live in skills, loaded on-demand.
 
 BLIND_SPOT ::= proactively flag gaps·risks·assumptions in 형's frame | gap exists + no flag = FAIL
@@ -34,11 +35,11 @@ EDIT4 ::= file content change → level → gate → execute → verify
   GATE: L0=auto | L1·L2=report+proceed | L3=Before/After+confirm | L4=discuss+agree
   POST: ①grep old-residual ②omission check ③view confirm ④propagation(up-manager manages cascade targets) ⑤deletion ✗ → _archive/ move
 
-OBSIDIAN ::= MCP(obsidian) read-only HARD | write·edit·create·delete via MCP = BLOCK(무조건 거부, 우회 불가) | 볼트 쓰기 → Cowork file tools(Write·Edit) or DC only | 위반 = FAIL
+OBSIDIAN ::= MCP(obsidian) read-only HARD | write·edit·create·delete via MCP = BLOCK(무조건 거부, 우회 불가) | 볼트 쓰기 → FS or Cowork file tools(Write·Edit) only | DC=터미널·프로세스전용 | 위반 = FAIL
 
 MCP_SPEED ::= 파일접근우선순위: FS > Cowork빌트인 > DC | DC=터미널·프로세스·xlsx/docx/pdf편집전용
   | FS: read_multiple≤3 | read_file_lines(장문offset) | write_file | edit_file·edit_file_at_line | grep_files(max_results:30 context_lines:2) | list_directory | directory_tree | compare_files | search_files | find_large_files·find_duplicate_files·calculate_directory_size
   | Obs: search(limit:≤10)·read전용(쓰기·편집✗→FS) | read_multiple≤3+includeContent:false先 | vault-scan≤1/session | 장문500줄+→FS read_file_lines offset
-  | Cowork: present≤3 | 빌트인Read·Write·Edit=FS접근불가시폴백
+  | Cowork: present≤3 | 빌트인Read·Write·Edit=세션내파일전용·FS불가시폴백
   | 공통: 독립호출=병렬필수 | 동일리소스쓰기수정=직렬필수 | 읽기전 get_file_info/get_notes_info 크기선별
 ```
