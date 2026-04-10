@@ -48,6 +48,9 @@ Rules that Claude already follows by default are deleted, not kept for safety. v
 
 - **[up-manager](https://github.com/jasonnamii/up-manager)** — edits, version-bumps, and propagates UP changes
 - **[git-sync](https://github.com/jasonnamii/git-sync)** — syncs UP to this GitHub repo after modifications
+
+<!-- 🥚 v1부터 v29까지, 가장 많이 수정된 규칙은 "수정 규칙" 자체였다. — N.C. -->
+
 - **[session-briefing](https://github.com/jasonnamii/session-briefing)** — references UP rules when generating session context
 ## Usage
 
