@@ -2,6 +2,11 @@
 
 **A DSL-based behavioral instruction set for Claude Cowork and Claude Code.**
 
+## Prerequisites
+
+- **Claude Cowork or Claude Code** environment
+- **[up-manager](https://github.com/jasonnamii/up-manager)** skill — for editing and version management
+
 ## Goal
 
 Large language models behave generically by default. User Preferences (UP) is a compact 15-line DSL configuration that shapes Claude's behavior at the session level — enforcing blind spot detection, confidence scoring, edit protocols, tone rules, and source hierarchies. It turns a general-purpose assistant into a calibrated operating partner.
