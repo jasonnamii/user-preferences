@@ -1,7 +1,7 @@
 ---
-linked_to: UP_user-preferences_v29.7.md
+linked_to: UP_user-preferences_v30.0.md
 created: 2026-04-08
-last_reviewed: 2026-04-09
+last_reviewed: 2026-04-10
 ---
 
 # UP Stability Map
@@ -41,7 +41,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~PRIORITY~~ | — | v29.1 삭제 (Claude default) | |
 | BLIND_SPOT | frozen | 근본 원칙. 변경 이력 없음 | |
 | EXECUTOR | stable | v29.2 압축: insufficient info 문구 삭제(EXECUTOR 역할 자명) | frozen→stable 강등 |
-| CONFIDENCE | frozen | 4단계 체계 확립 | |
+| CONFIDENCE | stable | v30.0: SKIP 'execution report'→'tool-result report' 변경 | frozen→stable 강등 |
 | INFO_BRANCH | stable | 실용 규칙 | |
 | ~~REPORT_FORMAT~~ | — | v29.3 삭제 (EDIT4에 Before/After 포함, 중복) | |
 | ~~PLAN_GATE~~ | — | v29.1 삭제 (Cowork default) | |
@@ -54,7 +54,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~SKILL_ROUTER~~ | — | v29.3 삭제 (스킬 시스템 자체 트리거 매칭으로 충분) | |
 | EDIT4 | stable | v29.3: POST ⑤ _archive/ move 흡수 | |
 | OBSIDIAN | stable | v29.4: MCP write/edit/create/delete BLOCK 강화. read-only HARD | |
-| MCP_SPEED | trial | v29.6: overhaul. FS>Cowork>DC 우선순위. DC=터미널전용. Obs=read전용. 5세션 카운트 리셋 | 5세션 무수정 시 stable 승격 |
+| MCP_SPEED | trial | v30.0: 약어정의 삽입. 5세션 카운트 리셋 | 5세션 무수정 시 stable 승격 |
 
 ---
 
@@ -62,9 +62,9 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
-| frozen | 2 | 12% |
-| stable | 6 | 35% |
+| frozen | 1 | 6% |
+| stable | 7 | 41% |
 | trial | 1 | 6% |
 | 삭제 | 8 | 47% (PRIORITY, PLAN_GATE, REPORT_FORMAT, INTERNAL_VOCAB, SAVE, TOOL_PRIORITY, SKILL_ROUTER, OBSIDIAN_LAYER→OBSIDIAN 축소잔류) |
 
-> 잔류 10개 규칙 중 MCP_SPEED(trial) 1건 신규. 나머지 frozen 또는 stable.
+> 잔류 10개 규칙 중 MCP_SPEED(trial) 1건. BLIND_SPOT만 frozen. 나머지 stable.
