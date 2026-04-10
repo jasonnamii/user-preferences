@@ -4,10 +4,11 @@ v29.2 | Compress: EXECUTOR(-1), TONE(-1), INTERNAL_VOCAB KRW→project CLAUDE.md
 v29.3 | Delete 6 rules(INTERNAL_VOCAB, REPORT_FORMAT, SAVE, TOOL_PRIORITY, SKILL_ROUTER, OBSIDIAN_LAYER). SAVE "_archive/ move" absorbed into EDIT4 POST ⑤. OBSIDIAN_LAYER→OBSIDIAN(read-only guard, 1 line). 22→14 lines.
 v29.4 | §OBSIDIAN hardened: MCP(obsidian) write·edit·create·delete = BLOCK(무조건 거부). read-only HARD 명시. 위반=FAIL.
 v29.5 | Add §MCP_SPEED: DC·Obs·Cowork 병목 파라미터 기본값+병렬/직렬 규칙. 14→15 lines.
+v29.6 | §MCP_SPEED overhaul: 우선순위 FS>Cowork>DC. DC→터미널·프로세스·바이너리편집전용. FS 전도구 열거. Obs=read전용(쓰기·편집→FS). Cowork=FS폴백. 도구그룹별 분리. 15→15 lines.
   PREV_CHANGELOG: Agent-Ops/_archive/UP_user-preferences_v28.0_EN.md
 
 ```
-# UP v29.5 — Core
+# UP v29.6 — Core
 # Rules: 15 lines. Full details live in skills, loaded on-demand.
 
 BLIND_SPOT ::= proactively flag gaps·risks·assumptions in 형's frame | gap exists + no flag = FAIL
@@ -35,7 +36,9 @@ EDIT4 ::= file content change → level → gate → execute → verify
 
 OBSIDIAN ::= MCP(obsidian) read-only HARD | write·edit·create·delete via MCP = BLOCK(무조건 거부, 우회 불가) | 볼트 쓰기 → Cowork file tools(Write·Edit) or DC only | 위반 = FAIL
 
-MCP_SPEED ::= DC search(maxResults:30 contextLines:2 earlyTermination:true) | DC list_directory(depth:1) | DC read_multiple≤3
-  | Obs search(limit:≤10) | Obs read_multiple≤3+includeContent:false先 | Obs vault-scan≤1/session | Obs 장문500줄+→DC read_file offset
-  | Cowork present≤3 | 독립호출=병렬필수 | 동일리소스쓰기수정=직렬필수 | 읽기전 get_file_info/get_notes_info 크기선별
+MCP_SPEED ::= 파일접근우선순위: FS > Cowork빌트인 > DC | DC=터미널·프로세스·xlsx/docx/pdf편집전용
+  | FS: read_multiple≤3 | read_file_lines(장문offset) | write_file | edit_file·edit_file_at_line | grep_files(max_results:30 context_lines:2) | list_directory | directory_tree | compare_files | search_files | find_large_files·find_duplicate_files·calculate_directory_size
+  | Obs: search(limit:≤10)·read전용(쓰기·편집✗→FS) | read_multiple≤3+includeContent:false先 | vault-scan≤1/session | 장문500줄+→FS read_file_lines offset
+  | Cowork: present≤3 | 빌트인Read·Write·Edit=FS접근불가시폴백
+  | 공통: 독립호출=병렬필수 | 동일리소스쓰기수정=직렬필수 | 읽기전 get_file_info/get_notes_info 크기선별
 ```

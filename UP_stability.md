@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v29.5.md
+linked_to: UP_user-preferences_v29.6.md
 created: 2026-04-08
 last_reviewed: 2026-04-09
 ---
@@ -54,7 +54,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~SKILL_ROUTER~~ | — | v29.3 삭제 (스킬 시스템 자체 트리거 매칭으로 충분) | |
 | EDIT4 | stable | v29.3: POST ⑤ _archive/ move 흡수 | |
 | OBSIDIAN | stable | v29.4: MCP write/edit/create/delete BLOCK 강화. read-only HARD | |
-| MCP_SPEED | trial | v29.5: 신규 추가. DC·Obs·Cowork 병목 파라미터 기본값+병렬/직렬 규칙 | 5세션 무수정 시 stable 승격 |
+| MCP_SPEED | trial | v29.6: overhaul. FS>Cowork>DC 우선순위. DC=터미널전용. Obs=read전용. 5세션 카운트 리셋 | 5세션 무수정 시 stable 승격 |
 
 ---
 
