@@ -1,5 +1,7 @@
 # User Preferences (UP)
 
+> 🇰🇷 [한국어 README](./README.ko.md)
+
 **A DSL-based behavioral instruction set for Claude Cowork and Claude Code.**
 
 ## Prerequisites
