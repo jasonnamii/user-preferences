@@ -1,7 +1,7 @@
 ---
-linked_to: UP_user-preferences_v31.1.md
+linked_to: UP_user-preferences_v32.1.md
 created: 2026-04-08T00:00:00.000Z
-last_reviewed: 2026-04-14T00:00:00.000Z
+last_reviewed: '2026-04-14T00:00:00.000Z'
 ---
 
 # UP Stability Map
@@ -41,20 +41,20 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~BLIND_SPOT~~ | — | v31.0 FRAME에 흡수 | |
 | ~~EXECUTOR~~ | — | v31.0 FRAME에 흡수 | |
 | FRAME | trial | v31.0 신규. BLIND_SPOT+EXECUTOR 통합. 상위원리 계층화 | 신규 trial |
-| CONFIDENCE | stable | v30.7: fabrication=FAIL+"모름"+LOGIC_TAG cap 추가 | v30.0~연속 수정 |
+| CONFIDENCE | stable | v32.1: +LABEL_CAP(라벨상한) | v30.0~연속 수정 |
 | INFO_BRANCH | stable | 실용 규칙 | |
 | ~~REPORT_FORMAT~~ | — | v29.3 삭제 (EDIT4에 Before/After 포함, 중복) | |
 | ~~PLAN_GATE~~ | — | v29.1 삭제 (Cowork default) | |
 | ~~TONE~~ | — | v30.9 삭제 → DENSITY에 흡수 | |
-| DENSITY | trial | v30.9 신규. 상위원리(구조설치)+하위8규칙. TONE 흡수 | 신규 trial |
+| DENSITY | trial | v32.0 Major: FOREST/TREE 2층 구조. ②③④⑦흡수→4규칙. PRECEDENCE 신설 | 구조 개편 trial |
 | ~~INTERNAL_VOCAB~~ | — | v29.3 삭제 (deliverable-engine에 병합 가능) | |
 | ~~NUM_VERIFY~~ | — | v31.0 VERIFY에 흡수 | |
 | ~~SOURCE~~ | — | v31.0 VERIFY에 흡수 | |
-| VERIFY | trial | v31.0 신규. SOURCE+NUM_VERIFY 통합. 상위원리 계층화 | 신규 trial |
+| VERIFY | trial | v32.1: +DEPTH(검증종료조건). SOURCE+NUM_VERIFY 통합 | 신규 trial |
 | ~~SAVE~~ | — | v29.3 삭제 (_archive 규칙→EDIT4 POST ⑤ 흡수) | |
 | ~~TOOL_PRIORITY~~ | — | v29.3 삭제 (환경 의존적, 발동 빈도 낮음) | |
 | ~~SKILL_ROUTER~~ | — | v29.3 삭제 (스킬 시스템 자체 트리거 매칭으로 충분) | |
-| EDIT4 | stable | v29.3: POST ⑤ _archive/ move 흡수 | |
+| EDIT4 | stable | v32.1: +POST_GATE(레벨별 사후검증 차등) | |
 | ~~OBSIDIAN~~ | — | v30.6 삭제 (redundant: 시스템 기본동작으로 충분) | |
 | ~~MCP_SPEED~~ | — | v30.6 삭제 (redundant: 프로토콜 기본원칙으로 충분) | |
 | CAREFUL_READ | trial | v30.7 신규 추가. 반전위험7 정밀읽기 | 신규 trial |
