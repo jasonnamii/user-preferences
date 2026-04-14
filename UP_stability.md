@@ -1,7 +1,7 @@
 ---
-linked_to: UP_user-preferences_v30.7.md
-created: 2026-04-08
-last_reviewed: 2026-04-14
+linked_to: UP_user-preferences_v31.1.md
+created: 2026-04-08T00:00:00.000Z
+last_reviewed: 2026-04-14T00:00:00.000Z
 ---
 
 # UP Stability Map
@@ -38,16 +38,19 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | 규칙 | 상태 | 근거 | 비고 |
 |------|------|------|------|
 | ~~PRIORITY~~ | — | v29.1 삭제 (Claude default) | |
-| BLIND_SPOT | frozen | 근본 원칙. 변경 이력 없음 | |
-| EXECUTOR | stable | v29.2 압축: insufficient info 문구 삭제(EXECUTOR 역할 자명) | frozen→stable 강등 |
+| ~~BLIND_SPOT~~ | — | v31.0 FRAME에 흡수 | |
+| ~~EXECUTOR~~ | — | v31.0 FRAME에 흡수 | |
+| FRAME | trial | v31.0 신규. BLIND_SPOT+EXECUTOR 통합. 상위원리 계층화 | 신규 trial |
 | CONFIDENCE | stable | v30.7: fabrication=FAIL+"모름"+LOGIC_TAG cap 추가 | v30.0~연속 수정 |
 | INFO_BRANCH | stable | 실용 규칙 | |
 | ~~REPORT_FORMAT~~ | — | v29.3 삭제 (EDIT4에 Before/After 포함, 중복) | |
 | ~~PLAN_GATE~~ | — | v29.1 삭제 (Cowork default) | |
-| TONE | stable | v29.2 압축: ceremonial intro/outro 삭제(TONE 맥락상 자명) → 1줄화 | frozen→stable 강등 |
+| ~~TONE~~ | — | v30.9 삭제 → DENSITY에 흡수 | |
+| DENSITY | trial | v30.9 신규. 상위원리(구조설치)+하위8규칙. TONE 흡수 | 신규 trial |
 | ~~INTERNAL_VOCAB~~ | — | v29.3 삭제 (deliverable-engine에 병합 가능) | |
-| NUM_VERIFY | stable | v29.2 압축: SIMPLE_CITE_EXEMPT 삭제(NUM_VERIFY 본문에서 추론 가능) | frozen→stable 강등 |
-| SOURCE | stable | v30.7: unfound→"확인필요" not fabricate 추가 | v30.7 수정 |
+| ~~NUM_VERIFY~~ | — | v31.0 VERIFY에 흡수 | |
+| ~~SOURCE~~ | — | v31.0 VERIFY에 흡수 | |
+| VERIFY | trial | v31.0 신규. SOURCE+NUM_VERIFY 통합. 상위원리 계층화 | 신규 trial |
 | ~~SAVE~~ | — | v29.3 삭제 (_archive 규칙→EDIT4 POST ⑤ 흡수) | |
 | ~~TOOL_PRIORITY~~ | — | v29.3 삭제 (환경 의존적, 발동 빈도 낮음) | |
 | ~~SKILL_ROUTER~~ | — | v29.3 삭제 (스킬 시스템 자체 트리거 매칭으로 충분) | |
@@ -56,6 +59,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~MCP_SPEED~~ | — | v30.6 삭제 (redundant: 프로토콜 기본원칙으로 충분) | |
 | CAREFUL_READ | trial | v30.7 신규 추가. 반전위험7 정밀읽기 | 신규 trial |
 | LOGIC_TAG | trial | v30.7 신규 추가. CONFIDENCE 서브규칙(추론유형 캡) | 신규 trial |
+| OVERWRITE_BAN | trial | v30.8 신규 추가. 기존파일 Write 절대금지 글로벌 승격 | 신규 trial |
 
 ---
 
@@ -63,9 +67,9 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
-| frozen | 1 | 5% |
-| stable | 6 | 30% |
-| trial | 2 | 10% |
-| 삭제 | 10 | 50% |
+| frozen | 0 | 0% |
+| stable | 3 | 14% |
+| trial | 6 | 27% |
+| 삭제 | 13 | 59% |
 
-> 잔류 10개 규칙(서브규칙 포함). BLIND_SPOT만 frozen. CAREFUL_READ·LOGIC_TAG는 trial(신규).
+> 잔류 8개 규칙(+서브규칙). v31.0 전면 계층화로 frozen 0개. FRAME·DENSITY·VERIFY 신규 trial. CONFIDENCE·INFO_BRANCH·EDIT4 stable 유지. CAREFUL_READ·LOGIC_TAG·OVERWRITE_BAN trial 유지.
