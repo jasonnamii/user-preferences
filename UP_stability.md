@@ -1,7 +1,7 @@
 ---
-linked_to: UP_user-preferences_v30.0.md
+linked_to: UP_user-preferences_v30.7.md
 created: 2026-04-08
-last_reviewed: 2026-04-10
+last_reviewed: 2026-04-14
 ---
 
 # UP Stability Map
@@ -31,7 +31,6 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
   DEMOTION: frozen → stable: 수정 발생 시 자동
   SESSION_COUNT: 세션브리핑 생성 = 1세션
 ```
-
 ---
 
 ## 규칙별 상태
@@ -41,20 +40,22 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~PRIORITY~~ | — | v29.1 삭제 (Claude default) | |
 | BLIND_SPOT | frozen | 근본 원칙. 변경 이력 없음 | |
 | EXECUTOR | stable | v29.2 압축: insufficient info 문구 삭제(EXECUTOR 역할 자명) | frozen→stable 강등 |
-| CONFIDENCE | stable | v30.0: SKIP 'execution report'→'tool-result report' 변경 | frozen→stable 강등 |
+| CONFIDENCE | stable | v30.7: fabrication=FAIL+"모름"+LOGIC_TAG cap 추가 | v30.0~연속 수정 |
 | INFO_BRANCH | stable | 실용 규칙 | |
 | ~~REPORT_FORMAT~~ | — | v29.3 삭제 (EDIT4에 Before/After 포함, 중복) | |
 | ~~PLAN_GATE~~ | — | v29.1 삭제 (Cowork default) | |
 | TONE | stable | v29.2 압축: ceremonial intro/outro 삭제(TONE 맥락상 자명) → 1줄화 | frozen→stable 강등 |
 | ~~INTERNAL_VOCAB~~ | — | v29.3 삭제 (deliverable-engine에 병합 가능) | |
 | NUM_VERIFY | stable | v29.2 압축: SIMPLE_CITE_EXEMPT 삭제(NUM_VERIFY 본문에서 추론 가능) | frozen→stable 강등 |
-| SOURCE | stable | 소스 우선순위 확립 | |
+| SOURCE | stable | v30.7: unfound→"확인필요" not fabricate 추가 | v30.7 수정 |
 | ~~SAVE~~ | — | v29.3 삭제 (_archive 규칙→EDIT4 POST ⑤ 흡수) | |
 | ~~TOOL_PRIORITY~~ | — | v29.3 삭제 (환경 의존적, 발동 빈도 낮음) | |
 | ~~SKILL_ROUTER~~ | — | v29.3 삭제 (스킬 시스템 자체 트리거 매칭으로 충분) | |
 | EDIT4 | stable | v29.3: POST ⑤ _archive/ move 흡수 | |
-| OBSIDIAN | stable | v29.4: MCP write/edit/create/delete BLOCK 강화. read-only HARD | |
-| MCP_SPEED | trial | v30.0: 약어정의 삽입. 5세션 카운트 리셋 | 5세션 무수정 시 stable 승격 |
+| ~~OBSIDIAN~~ | — | v30.6 삭제 (redundant: 시스템 기본동작으로 충분) | |
+| ~~MCP_SPEED~~ | — | v30.6 삭제 (redundant: 프로토콜 기본원칙으로 충분) | |
+| CAREFUL_READ | trial | v30.7 신규 추가. 반전위험7 정밀읽기 | 신규 trial |
+| LOGIC_TAG | trial | v30.7 신규 추가. CONFIDENCE 서브규칙(추론유형 캡) | 신규 trial |
 
 ---
 
@@ -62,9 +63,9 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
-| frozen | 1 | 6% |
-| stable | 7 | 41% |
-| trial | 1 | 6% |
-| 삭제 | 8 | 47% (PRIORITY, PLAN_GATE, REPORT_FORMAT, INTERNAL_VOCAB, SAVE, TOOL_PRIORITY, SKILL_ROUTER, OBSIDIAN_LAYER→OBSIDIAN 축소잔류) |
+| frozen | 1 | 5% |
+| stable | 6 | 30% |
+| trial | 2 | 10% |
+| 삭제 | 10 | 50% |
 
-> 잔류 10개 규칙 중 MCP_SPEED(trial) 1건. BLIND_SPOT만 frozen. 나머지 stable.
+> 잔류 10개 규칙(서브규칙 포함). BLIND_SPOT만 frozen. CAREFUL_READ·LOGIC_TAG는 trial(신규).
