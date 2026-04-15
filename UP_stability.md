@@ -1,6 +1,5 @@
 ---
-linked_to: UP_user-preferences_v32.2.md
-linked_to: UP_user-preferences_v32.2.md
+linked_to: UP_user-preferences_v35.3.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-14T00:00:00.000Z'
 ---
@@ -41,26 +40,47 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~PRIORITY~~ | — | v29.1 삭제 (Claude default) | |
 | ~~BLIND_SPOT~~ | — | v31.0 FRAME에 흡수 | |
 | ~~EXECUTOR~~ | — | v31.0 FRAME에 흡수 | |
-| FRAME | trial | v31.0 신규. BLIND_SPOT+EXECUTOR 통합. 상위원리 계층화 | 신규 trial |
-| CONFIDENCE | stable | v32.1: +LABEL_CAP(라벨상한) | v30.0~연속 수정 |
-| INFO_BRANCH | stable | 실용 규칙 | |
+| ~~FRAME~~ | — | v31.0~v34.1. v35.0에서 M1.FRAME으로 재지정 | Tier 재편 |
+| ~~CONFIDENCE~~ | — | v35.0에서 M6.CONFIDENCE로 재지정(+CAREFUL_READ 흡수) | Tier 재편 |
+| ~~INFO_BRANCH~~ | — | v35.0 M7.INTENT_PARSE에 흡수 | 병합 |
 | ~~REPORT_FORMAT~~ | — | v29.3 삭제 (EDIT4에 Before/After 포함, 중복) | |
 | ~~PLAN_GATE~~ | — | v29.1 삭제 (Cowork default) | |
 | ~~TONE~~ | — | v30.9 삭제 → DENSITY에 흡수 | |
-| DENSITY | trial | v32.2: +⑨visual-compress, +⑩output-split. FOREST/TREE 2층 구조 유지 | ⑨⑩ 추가 trial 유지 |
+| ~~DENSITY~~ | — | v35.0에서 M3.DENSITY로 재지정 | Tier 재편 |
 | ~~INTERNAL_VOCAB~~ | — | v29.3 삭제 (deliverable-engine에 병합 가능) | |
 | ~~NUM_VERIFY~~ | — | v31.0 VERIFY에 흡수 | |
 | ~~SOURCE~~ | — | v31.0 VERIFY에 흡수 | |
-| VERIFY | trial | v32.1: +DEPTH(검증종료조건). SOURCE+NUM_VERIFY 통합 | 신규 trial |
+| ~~VERIFY~~ | — | v35.0에서 M9.VERIFY로 재지정 | Tier 재편 |
 | ~~SAVE~~ | — | v29.3 삭제 (_archive 규칙→EDIT4 POST ⑤ 흡수) | |
 | ~~TOOL_PRIORITY~~ | — | v29.3 삭제 (환경 의존적, 발동 빈도 낮음) | |
 | ~~SKILL_ROUTER~~ | — | v29.3 삭제 (스킬 시스템 자체 트리거 매칭으로 충분) | |
-| EDIT4 | stable | v32.1: +POST_GATE(레벨별 사후검증 차등) | |
+| ~~EDIT4~~ | — | v35.0에서 M8.EDIT4로 재지정(+OVERWRITE_BAN 흡수) | Tier 재편 |
 | ~~OBSIDIAN~~ | — | v30.6 삭제 (redundant: 시스템 기본동작으로 충분) | |
 | ~~MCP_SPEED~~ | — | v30.6 삭제 (redundant: 프로토콜 기본원칙으로 충분) | |
-| CAREFUL_READ | trial | v30.7 신규 추가. 반전위험7 정밀읽기 | 신규 trial |
-| LOGIC_TAG | trial | v30.7 신규 추가. CONFIDENCE 서브규칙(추론유형 캡) | 신규 trial |
-| OVERWRITE_BAN | trial | v30.8 신규 추가. 기존파일 Write 절대금지 글로벌 승격 | 신규 trial |
+| ~~CAREFUL_READ~~ | — | v35.0 M6.CONFIDENCE에 흡수 | 병합 |
+| ~~LOGIC_TAG~~ | — | M6.CONFIDENCE 서브규칙으로 유지(독립행 불필요) | 병합 |
+| ~~OVERWRITE_BAN~~ | — | v35.0 M8.EDIT4에 흡수 | 병합 |
+| ~~BEDROCK~~ | — | v35.0에서 M5.BEDROCK으로 재지정 | Tier 재편 |
+| ~~ERROR_CORRECTION~~ | — | v35.0에서 M10.ERROR_CORRECTION으로 재지정 | Tier 재편 |
+| ~~INTENT_PARSE~~ | — | v35.0에서 M7.INTENT_PARSE로 재지정(+INFO_BRANCH 흡수) | Tier 재편 |
+| ~~TURN_OPS~~ | — | v35.0에서 M11.TURN_OPS로 재지정 | Tier 재편 |
+| ~~SKILL_DISPATCH~~ | — | v35.0 삭제(시스템 자동매칭 위임) | 삭제 |
+| ~~FAST_LANE~~ | — | v35.0에서 M2.FAST_LANE으로 재지정 | Tier 재편 |
+| ~~MODULE_PRECEDENCE~~ | — | v35.0 삭제(M8.EDIT4에 인라인) | 병합 |
+| ~~CHAT_TITLE~~ | — | v35.0에서 M4.CHAT_TITLE로 재지정 | Tier 재편 |
+| | | | |
+| **v35.0 Tier Architecture** | | | |
+| M1.FRAME | trial | v35.0 T1. 기존 FRAME 계승 | Tier 재편 trial 유지 |
+| M2.FAST_LANE | trial | v35.3 +STEALTH 서브규칙(WEIGHT 노출 차단 강화) | 수정 trial 유지 |
+| M3.DENSITY | trial | v35.1 TREE 체크리스트→생성원리 전환, FINAL_CHECK·DIAGNOSIS_RULE 정합 | 수정 trial 유지 |
+| ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가) | 삭제 |
+| M4.BEDROCK | trial | v35.1 RULE에 CONFIDENCE 인라인 병기 추가. v35.3 M5→M4 재넘버링 | 수정 trial 유지 |
+| M5.CONFIDENCE | trial | v35.0 T2. +CAREFUL_READ 흡수. v35.3 M6→M5 재넘버링 | 병합 trial 리셋 |
+| M6.INTENT_PARSE | trial | v35.0 T2. +INFO_BRANCH 흡수. v35.3 M7→M6 재넘버링 | 병합 trial 리셋 |
+| M7.EDIT4 | trial | v35.1 GATE L1 auto 승격+CONFIDENCE선행 삭제. v35.3 M8→M7 재넘버링 | 수정 trial 유지 |
+| M8.VERIFY | trial | v35.0 T2. 기존 VERIFY 계승. v35.3 M9→M8 재넘버링 | Tier 재편 trial 유지 |
+| M9.ERROR_CORRECTION | trial | v35.0 T3. 기존 ERROR_CORRECTION 계승. v35.3 M10→M9 재넘버링 | Tier 재편 trial 유지 |
+| M10.TURN_OPS | trial | v35.0 T3. 기존 TURN_OPS 계승. v35.3 M11→M10 재넘버링 | Tier 재편 trial 유지 |
 
 ---
 
@@ -69,8 +89,8 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
 | frozen | 0 | 0% |
-| stable | 3 | 14% |
-| trial | 6 | 27% |
-| 삭제 | 13 | 59% |
+| stable | 0 | 0% |
+| trial | 10 | 100% |
+| 삭제/병합 | 29 | (이력) |
 
-> 잔류 8개 규칙(+서브규칙). v31.0 전면 계층화로 frozen 0개. FRAME·DENSITY·VERIFY 신규 trial. CONFIDENCE·INFO_BRANCH·EDIT4 stable 유지. CAREFUL_READ·LOGIC_TAG·OVERWRITE_BAN trial 유지.
+> v35.3 M4.CHAT_TITLE 삭제. M2.FAST_LANE STEALTH 신설. 전모듈 재넘버링(M4~M10). 10모듈 trial 유지.
