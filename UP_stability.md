@@ -1,5 +1,6 @@
 ---
-linked_to: UP_user-preferences_v32.1.md
+linked_to: UP_user-preferences_v32.2.md
+linked_to: UP_user-preferences_v32.2.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-14T00:00:00.000Z'
 ---
@@ -46,7 +47,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~REPORT_FORMAT~~ | — | v29.3 삭제 (EDIT4에 Before/After 포함, 중복) | |
 | ~~PLAN_GATE~~ | — | v29.1 삭제 (Cowork default) | |
 | ~~TONE~~ | — | v30.9 삭제 → DENSITY에 흡수 | |
-| DENSITY | trial | v32.0 Major: FOREST/TREE 2층 구조. ②③④⑦흡수→4규칙. PRECEDENCE 신설 | 구조 개편 trial |
+| DENSITY | trial | v32.2: +⑨visual-compress, +⑩output-split. FOREST/TREE 2층 구조 유지 | ⑨⑩ 추가 trial 유지 |
 | ~~INTERNAL_VOCAB~~ | — | v29.3 삭제 (deliverable-engine에 병합 가능) | |
 | ~~NUM_VERIFY~~ | — | v31.0 VERIFY에 흡수 | |
 | ~~SOURCE~~ | — | v31.0 VERIFY에 흡수 | |
