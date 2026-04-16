@@ -1,7 +1,8 @@
 ---
-linked_to: UP_user-preferences_v35.12.md
+linked_to: UP_user-preferences_v35.13.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-16T00:00:00.000Z'
+updated: '2026-04-16T00:00:00.000Z'
 ---
 
 # UP Stability Map
@@ -72,7 +73,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | **v35.0 Tier Architecture** | | | |
 | M1.FRAME | frozen | v31.0~ 본질 불변. v35.4 frozen 승격 | 핵심 원칙 |
 | M2.FAST_LANE | trial | v35.7 +COST_AWARE(L0 BOOT 완전스킵). trial 유지 | 수정 발생 |
-| M3.DENSITY | stable | v35.12 +CLOSURE(L2·L3 종결부 "결국→" 1줄 매듭 필수). v35.8 hedge 9종 금지+STEALTH 강화+OUTPUT_CAP 압축순서+L1 factual 직답 원칙. stable 유지 | 수정 발생 |
+| M3.DENSITY | stable | v35.13 CLOSURE 문구 개선(결국→신호등+결론, 플레이스홀더 기호 금지 SYNTAX, EMOJI 3색 분기). v35.12 +CLOSURE 신설. v35.8 hedge 9종 금지+STEALTH 강화+OUTPUT_CAP 압축순서+L1 factual 직답 원칙. stable 유지 | 수정 발생 |
 | ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가). v35.9 M10 서브규칙으로 복원 | 삭제→복원 |
 | M4.BEDROCK | stable | v32.4~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
 | M5.CONFIDENCE | stable | v35.5 +PATTERN_GUARD +CAUSATION 추가로 frozen→stable 강등 | 수정 발생 |
@@ -102,3 +103,4 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 > v35.10 +M11.VAULT_PREFLIGHT: 볼트 의존 스킬 마운트 선확인. 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. 분산 선언 방식(vault_dependency 프론트매터)으로 UP-스킬 커플링 제거. T2:5→6, modules 10→11.
 > v35.11 +M12.MODE_GATES: 실행 모드 트리거 3종(작업계획·핑퐁·리허설). 사고도구(trigger-dictionary)와 분리된 Claude 기본 거동 통제 레이어. T3 배치(PRIORITY M9>M12>M10). 정확 매칭 6종 + RELEASE/AMBIGUOUS/TRANSITION 규정. 핑퐁 ⇄ 작업계획 자유 전환. T3:2→3, modules 11→12. M12 trial.
 > v35.12 +M3.DENSITY.CLOSURE: L2·L3 종결부 "결국 [원요청]→[실제수행]" 1줄 매듭 필수. 산출물 링크 직전 배치, 자유형식 허용. 빈 선언·원요청 왜곡 FAIL. 사용자 피드백루프 단축 목적. 모듈수 변동 없음(M3 서브규칙 1건 추가). M3 stable 유지.
+> v35.13 M3.DENSITY.CLOSURE 문구 개선: "결국"→"{🟢|🟠|🔴} 결론:" + SYNTAX(대괄호·꺾쇠 플레이스홀더 기호 출력 금지) + EMOJI(🟢완전/🟠부분/🔴미달, 애매시 🟠 기본) 3색 분기. 사용자 지적 2건 처리: "결국" 어색 + 대괄호 실출력. M3 stable 유지.

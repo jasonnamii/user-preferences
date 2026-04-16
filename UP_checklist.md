@@ -1,7 +1,7 @@
 ---
 title: UP 자가점검 체크리스트
 version: 1.0
-source: UP_user-preferences_v35.12.md
+source: UP_user-preferences_v35.13.md
 role: 엔진(UP 본체) ≠ 계기판(본 문서). 대체 X, 점검 O.
 updated: 2026-04-16
 ---
@@ -57,7 +57,7 @@ updated: 2026-04-16
 
 ### 결론 매듭
 
-- [ ] **16. CLOSURE** — L2·L3 종결부에 "결국 [원요청]→[실제수행]" 1줄. 산출물 링크 직전. "완료했습니다"류 빈 선언 FAIL.
+- [ ] **16. CLOSURE** — L2·L3 종결부에 "{🟢|🟠|🔴} 결론: <원요청>→<실제수행>" 1줄. 신호등(🟢완전/🟠부분/🔴미달, 애매시 🟠). 산출물 링크 직전. 대괄호·꺾쇠 기호 출력 금지(실제 내용 치환). "완료했습니다"류 빈 선언 FAIL.
 
 ---
 
@@ -104,5 +104,5 @@ OVERWRITE_BAN · ERROR_CORRECTION · PATTERN_GUARD · HONORIFIC
 
 ---
 
-*엔진 소스: [[UP_user-preferences_v35.12]]*
+*엔진 소스: [[UP_user-preferences_v35.13]]*
 *안정도 소스: [[UP_stability]]*
