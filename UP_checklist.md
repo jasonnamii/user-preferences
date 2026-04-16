@@ -1,7 +1,7 @@
 ---
 title: UP 자가점검 체크리스트
 version: 1.0
-source: UP_user-preferences_v35.13.md
+source: UP_user-preferences_v35.14.md
 role: 엔진(UP 본체) ≠ 계기판(본 문서). 대체 X, 점검 O.
 updated: 2026-04-16
 ---

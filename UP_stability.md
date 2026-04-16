@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v35.13.md
+linked_to: UP_user-preferences_v35.14.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-16T00:00:00.000Z'
 updated: '2026-04-16T00:00:00.000Z'
@@ -81,7 +81,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | M7.EDIT4 | stable | v35.7 +SKILL_PRECEDENCE(UP>스킬, SAFE_RULES 4건 예외). frozen→stable 강등 | 수정 발생 |
 | M8.VERIFY | stable | v35.6 GROUNDING 경량화+PRECEDENCE 추가(라이브락 해소). stable 유지 | 체계 확립 |
 | M9.ERROR_CORRECTION | trial | v33.0 신설. v35.4 trial 유지 | 검증 중 |
-| M10.TURN_OPS | trial | v35.9 +CHAT_TITLE(세션 제목 한글 강제, v35.3 삭제본 M10 서브규칙으로 복원 +NOTE UI 자동생성 우회). trial 유지 | 검증 중 |
+| M10.TURN_OPS | trial | v35.14 CHAT_TITLE 전체 삭제(앱 UI 제어 불가 + 대괄호 출력 오염). trial 유지 | 검증 중 |
 | M11.VAULT_PREFLIGHT | trial | v35.10 신설. 볼트 의존 스킬 마운트 선확인 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. `vault_dependency` 프론트매터 분산 선언 방식 | 검증 중 |
 | M12.MODE_GATES | trial | v35.11 신설. 실행 모드 트리거 3종(작업계획·핑퐁·리허설). Claude 기본 거동 통제 레이어. 정확 매칭 6종 + RELEASE(명시적 실행 지시) + AMBIGUOUS 처리("적용"·"반영"·"수정"→확인) | 검증 중 |
 | T3_PRIORITY | trial | v35.7 신설(M9>M10). v35.11 갱신(M9>M12>M10) | 검증 중 |
@@ -103,4 +103,5 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 > v35.10 +M11.VAULT_PREFLIGHT: 볼트 의존 스킬 마운트 선확인. 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. 분산 선언 방식(vault_dependency 프론트매터)으로 UP-스킬 커플링 제거. T2:5→6, modules 10→11.
 > v35.11 +M12.MODE_GATES: 실행 모드 트리거 3종(작업계획·핑퐁·리허설). 사고도구(trigger-dictionary)와 분리된 Claude 기본 거동 통제 레이어. T3 배치(PRIORITY M9>M12>M10). 정확 매칭 6종 + RELEASE/AMBIGUOUS/TRANSITION 규정. 핑퐁 ⇄ 작업계획 자유 전환. T3:2→3, modules 11→12. M12 trial.
 > v35.12 +M3.DENSITY.CLOSURE: L2·L3 종결부 "결국 [원요청]→[실제수행]" 1줄 매듭 필수. 산출물 링크 직전 배치, 자유형식 허용. 빈 선언·원요청 왜곡 FAIL. 사용자 피드백루프 단축 목적. 모듈수 변동 없음(M3 서브규칙 1건 추가). M3 stable 유지.
+> v35.14 M10.TURN_OPS.CHAT_TITLE 전체 삭제: 앱 UI 제어 불가 + [제목제안] 대괄호 출력 오염. v34.1→v35.3삭제→v35.9복원→v35.14 최종 삭제. M10 trial 유지.
 > v35.13 M3.DENSITY.CLOSURE 문구 개선: "결국"→"{🟢|🟠|🔴} 결론:" + SYNTAX(대괄호·꺾쇠 플레이스홀더 기호 출력 금지) + EMOJI(🟢완전/🟠부분/🔴미달, 애매시 🟠 기본) 3색 분기. 사용자 지적 2건 처리: "결국" 어색 + 대괄호 실출력. M3 stable 유지.
