@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v35.14.md
+linked_to: UP_user-preferences_v35.16.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-16T00:00:00.000Z'
 updated: '2026-04-16T00:00:00.000Z'
@@ -72,18 +72,18 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | | | | |
 | **v35.0 Tier Architecture** | | | |
 | M1.FRAME | frozen | v31.0~ 본질 불변. v35.4 frozen 승격 | 핵심 원칙 |
-| M2.FAST_LANE | trial | v35.7 +COST_AWARE(L0 BOOT 완전스킵). trial 유지 | 수정 발생 |
-| M3.DENSITY | stable | v35.13 CLOSURE 문구 개선(결국→신호등+결론, 플레이스홀더 기호 금지 SYNTAX, EMOJI 3색 분기). v35.12 +CLOSURE 신설. v35.8 hedge 9종 금지+STEALTH 강화+OUTPUT_CAP 압축순서+L1 factual 직답 원칙. stable 유지 | 수정 발생 |
+| M2.FAST_LANE | trial | v35.16 +ETA_BADGE(L3 착수시 "⏱️ ~N턴" 고지). v35.15 +STEALTH.EXCEPTION(⚡🧠🏔️ WEIGHT 배지 1회 허용). v35.7 +COST_AWARE. trial 유지 | 수정 발생 |
+| M3.DENSITY | stable | v35.15 +CLOSURE.NEXT_ACTION("🔜 다음:" 1줄 선택적 추가, 종결+전진 1세트). v35.13 CLOSURE 문구 개선(결국→신호등+결론, 플레이스홀더 기호 금지 SYNTAX, EMOJI 3색 분기). v35.12 +CLOSURE 신설. stable 유지 | 수정 발생 |
 | ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가). v35.9 M10 서브규칙으로 복원 | 삭제→복원 |
 | M4.BEDROCK | stable | v32.4~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
-| M5.CONFIDENCE | stable | v35.5 +PATTERN_GUARD +CAUSATION 추가로 frozen→stable 강등 | 수정 발생 |
+| M5.CONFIDENCE | stable | v35.16 +UNCERTAINTY_FLAG("🚧 미확정 N건" 상단 배지, 2건↑ 조건). v35.5 +PATTERN_GUARD +CAUSATION. stable 유지 | 수정 발생 |
 | M6.INTENT_PARSE | stable | v33.0~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
 | M7.EDIT4 | stable | v35.7 +SKILL_PRECEDENCE(UP>스킬, SAFE_RULES 4건 예외). frozen→stable 강등 | 수정 발생 |
 | M8.VERIFY | stable | v35.6 GROUNDING 경량화+PRECEDENCE 추가(라이브락 해소). stable 유지 | 체계 확립 |
 | M9.ERROR_CORRECTION | trial | v33.0 신설. v35.4 trial 유지 | 검증 중 |
-| M10.TURN_OPS | trial | v35.14 CHAT_TITLE 전체 삭제(앱 UI 제어 불가 + 대괄호 출력 오염). trial 유지 | 검증 중 |
+| M10.TURN_OPS | trial | v35.16 +CONTEXT_LINK(≥2턴 전 결정 참조시 "↩️ N턴 전 {주제} 연계" 배지, 장기대화 앵커링). v35.14 CHAT_TITLE 전체 삭제. trial 유지 | 검증 중 |
 | M11.VAULT_PREFLIGHT | trial | v35.10 신설. 볼트 의존 스킬 마운트 선확인 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. `vault_dependency` 프론트매터 분산 선언 방식 | 검증 중 |
-| M12.MODE_GATES | trial | v35.11 신설. 실행 모드 트리거 3종(작업계획·핑퐁·리허설). Claude 기본 거동 통제 레이어. 정확 매칭 6종 + RELEASE(명시적 실행 지시) + AMBIGUOUS 처리("적용"·"반영"·"수정"→확인) | 검증 중 |
+| M12.MODE_GATES | trial | v35.15 +BADGE(모드 진입시 🔵핑퐁/🟡작업계획/🟣리허설/⚪자유실행 1토큰 배지 첫 줄 필수, 모드 혼동 해소). v35.11 신설. 실행 모드 트리거 3종. 정확 매칭 6종 + RELEASE + AMBIGUOUS 처리 | 검증 중 |
 | T3_PRIORITY | trial | v35.7 신설(M9>M10). v35.11 갱신(M9>M12>M10) | 검증 중 |
 
 ---
@@ -105,3 +105,5 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 > v35.12 +M3.DENSITY.CLOSURE: L2·L3 종결부 "결국 [원요청]→[실제수행]" 1줄 매듭 필수. 산출물 링크 직전 배치, 자유형식 허용. 빈 선언·원요청 왜곡 FAIL. 사용자 피드백루프 단축 목적. 모듈수 변동 없음(M3 서브규칙 1건 추가). M3 stable 유지.
 > v35.14 M10.TURN_OPS.CHAT_TITLE 전체 삭제: 앱 UI 제어 불가 + [제목제안] 대괄호 출력 오염. v34.1→v35.3삭제→v35.9복원→v35.14 최종 삭제. M10 trial 유지.
 > v35.13 M3.DENSITY.CLOSURE 문구 개선: "결국"→"{🟢|🟠|🔴} 결론:" + SYNTAX(대괄호·꺾쇠 플레이스홀더 기호 출력 금지) + EMOJI(🟢완전/🟠부분/🔴미달, 애매시 🟠 기본) 3색 분기. 사용자 지적 2건 처리: "결국" 어색 + 대괄호 실출력. M3 stable 유지.
+> v35.15 직관성 3종 확장("이모지+단어=구조설치" 원리 일반화): +M12.BADGE(🔵🟡🟣⚪ 모드 배지 첫 줄 필수), +M3.CLOSURE.NEXT_ACTION("🔜 다음:" 선택적 1줄), +M2.STEALTH.EXCEPTION(⚡🧠🏔️ WEIGHT 배지 사용자 요청시 1회 허용). M3·M12 stable 유지, M2 trial 유지.
+> v35.16 UX 원리 기반 메타정보 배지 3종 확장(Peripheral Awareness·System Status Visibility·Context Continuity): +M5.UNCERTAINTY_FLAG("🚧 미확정 N건" 2건↑ 조건), +M2.ETA_BADGE("⏱️ ~N턴" L3만), +M10.CONTEXT_LINK("↩️ N턴 전 {주제} 연계" ≥2턴 전 참조시). 선택적 출력(조건 충족시만) 원칙. M2·M5·M10 trial 유지.
