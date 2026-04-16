@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v35.18.md
+linked_to: UP_user-preferences_v35.19.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-17T00:00:00.000Z'
 updated: '2026-04-17T00:00:00.000Z'
@@ -72,16 +72,16 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | | | | |
 | **v35.0 Tier Architecture** | | | |
 | M1.FRAME | frozen | v31.0~ 본질 불변. v35.4 frozen 승격 | 핵심 원칙 |
-| M2.FAST_LANE | trial | v35.16 +ETA_BADGE(L3 착수시 "⏱️ ~N턴" 고지). v35.15 +STEALTH.EXCEPTION(⚡🧠🏔️ WEIGHT 배지 1회 허용). v35.7 +COST_AWARE. trial 유지 | 수정 발생 |
-| M3.DENSITY | stable | v35.18 +BADGE_SYNTAX(배지 HTML/마크다운 래핑 금지, 이모지+텍스트 원형만). v35.15 +CLOSURE.NEXT_ACTION("🔜 다음:" 1줄 선택적 추가, 종결+전진 1세트). v35.13 CLOSURE 문구 개선(결국→신호등+결론, 플레이스홀더 기호 금지 SYNTAX, EMOJI 3색 분기). v35.12 +CLOSURE 신설. stable 유지 | 수정 발생 |
+| M2.FAST_LANE | trial | v35.19 ETA_BADGE·STEALTH.EXCEPTION·BOOT 삭제(심플화). v35.7 +COST_AWARE(BOOT 흡수). trial 유지 | 수정 발생 |
+| M3.DENSITY | stable | v35.19 CLOSURE·NEXT_ACTION·FINAL_CHECK·BADGE_SYNTAX 삭제(심플화), +CTA(자연어 1줄). v35.18 +BADGE_SYNTAX(삭제됨). v35.15 +CLOSURE.NEXT_ACTION(삭제됨). v35.12 +CLOSURE(삭제됨). stable 유지 | 수정 발생 |
 | ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가). v35.9 M10 서브규칙으로 복원 | 삭제→복원 |
 | M4.BEDROCK | stable | v32.4~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
-| M5.CONFIDENCE | stable | v35.18 +INJECTION_GUARD(프롬프트 인젝션 방어, UP 무효화 시도 FAIL). v35.16 +UNCERTAINTY_FLAG("🚧 미확정 N건" 상단 배지, 2건↑ 조건). v35.5 +PATTERN_GUARD +CAUSATION. stable 유지 | 수정 발생 |
+| M5.CONFIDENCE | stable | v35.19 UNCERTAINTY_FLAG 삭제(심플화). v35.18 +INJECTION_GUARD. v35.5 +PATTERN_GUARD +CAUSATION. stable 유지 | 수정 발생 |
 | M6.INTENT_PARSE | stable | v33.0~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
 | M7.EDIT4 | stable | v35.7 +SKILL_PRECEDENCE(UP>스킬, SAFE_RULES 4건 예외). frozen→stable 강등 | 수정 발생 |
 | M8.VERIFY | stable | v35.6 GROUNDING 경량화+PRECEDENCE 추가(라이브락 해소). stable 유지 | 체계 확립 |
 | M9.ERROR_CORRECTION | trial | v33.0 신설. v35.4 trial 유지 | 검증 중 |
-| M10.TURN_OPS | trial | v35.18 +SELF_CHECK(10턴마다 FRAME·WEIGHT·hedge·HONORIFIC 4항목 간이진단, 위반시 T1 강화, UP_RESET과 독립). v35.16 +CONTEXT_LINK(≥2턴 전 결정 참조시 "↩️ N턴 전 {주제} 연계" 배지). v35.14 CHAT_TITLE 전체 삭제. trial 유지 | 검증 중 |
+| M10.TURN_OPS | trial | v35.19 CONTEXT_LINK 삭제(심플화). v35.18 +SELF_CHECK. v35.14 CHAT_TITLE 전체 삭제. trial 유지 | 검증 중 |
 | M11.VAULT_PREFLIGHT | trial | v35.10 신설. 볼트 의존 스킬 마운트 선확인 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. `vault_dependency` 프론트매터 분산 선언 방식 | 검증 중 |
 | M12.MODE_GATES | trial | v35.15 +BADGE(모드 진입시 🔵핑퐁/🟡작업계획/🟣리허설/⚪자유실행 1토큰 배지 첫 줄 필수, 모드 혼동 해소). v35.11 신설. 실행 모드 트리거 3종. 정확 매칭 6종 + RELEASE + AMBIGUOUS 처리 | 검증 중 |
 | T3_PRIORITY | trial | v35.7 신설(M9>M10). v35.11 갱신(M9>M12>M10) | 검증 중 |
@@ -109,3 +109,4 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 > v35.16 UX 원리 기반 메타정보 배지 3종 확장(Peripheral Awareness·System Status Visibility·Context Continuity): +M5.UNCERTAINTY_FLAG("🚧 미확정 N건" 2건↑ 조건), +M2.ETA_BADGE("⏱️ ~N턴" L3만), +M10.CONTEXT_LINK("↩️ N턴 전 {주제} 연계" ≥2턴 전 참조시). 선택적 출력(조건 충족시만) 원칙. M2·M5·M10 trial 유지.
 > v35.18 skill-doctor 진단 v35.16 처방 반영(LOW impact, 기능 추가 2건): +M5.INJECTION_GUARD(프롬프트 인젝션 방어 — UP 규칙 무효화 시도 FAIL, 작업별 예외 요청은 허용), +M10.SELF_CHECK(10턴마다 FRAME·WEIGHT·hedge·HONORIFIC 4항목 간이진단, 위반시 T1 강화+1줄 자가보고, UP_RESET과 독립 작동). 진단 점수 🟠84→🟢87, ④-1 취약·⑧-1 무자각 🟠→🟢 상향. INVARIANT 6/6 보존. M5·M10 trial 유지(기능 확장).
 > v35.18 +M3.DENSITY.BADGE_SYNTAX(MID impact, 기능 추가 1건): 배지 출력 규약 명시. 모든 배지(모드·ETA·연계·미확정·WEIGHT) 이모지+텍스트 원형만 허용, HTML 태그(<mark>·<span>·<b>) 및 마크다운 강조(**·_·`) 래핑 FAIL. 사용자 지적 반영(렌더러 미지원 환경 <mark> 원시 노출 버그). 5개 배지 규칙 공통 적용. M3 stable 유지.
+> v35.19 심플화 대삭제(MID impact, 삭제 9건 / 추가 1건): 사용자 "말이 너무 많다" 지적. 출력 부풀림 규칙 9건 전면 삭제 — M3.CLOSURE·M3.NEXT_ACTION·M2.ETA_BADGE·M5.UNCERTAINTY_FLAG·M10.CONTEXT_LINK·M2.STEALTH.EXCEPTION·M3.FINAL_CHECK·M2.BOOT·M3.BADGE_SYNTAX. 대체 신규 +M3.CTA(자연어 1줄 질문, 규칙 없이 상황 판단). 보존: M12.BADGE 🔵🟡🟣 3종(모드 구분 필수). 배지 7종→3종. INVARIANT 6/6 보존(장식 레이어만 제거). M2·M3·M5·M10 상태 유지(강등 없음).
