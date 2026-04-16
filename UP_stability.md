@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v35.10.md
+linked_to: UP_user-preferences_v35.12.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-16T00:00:00.000Z'
 ---
@@ -72,7 +72,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | **v35.0 Tier Architecture** | | | |
 | M1.FRAME | frozen | v31.0~ 본질 불변. v35.4 frozen 승격 | 핵심 원칙 |
 | M2.FAST_LANE | trial | v35.7 +COST_AWARE(L0 BOOT 완전스킵). trial 유지 | 수정 발생 |
-| M3.DENSITY | stable | v35.8 hedge 9종 금지+STEALTH 강화+OUTPUT_CAP 압축순서(부연→층→어미보존)+L1 factual 직답 원칙 추가 (autoloop 4건 keep). stable 유지 | 수정 발생 |
+| M3.DENSITY | stable | v35.12 +CLOSURE(L2·L3 종결부 "결국→" 1줄 매듭 필수). v35.8 hedge 9종 금지+STEALTH 강화+OUTPUT_CAP 압축순서+L1 factual 직답 원칙. stable 유지 | 수정 발생 |
 | ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가). v35.9 M10 서브규칙으로 복원 | 삭제→복원 |
 | M4.BEDROCK | stable | v32.4~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
 | M5.CONFIDENCE | stable | v35.5 +PATTERN_GUARD +CAUSATION 추가로 frozen→stable 강등 | 수정 발생 |
@@ -82,7 +82,8 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | M9.ERROR_CORRECTION | trial | v33.0 신설. v35.4 trial 유지 | 검증 중 |
 | M10.TURN_OPS | trial | v35.9 +CHAT_TITLE(세션 제목 한글 강제, v35.3 삭제본 M10 서브규칙으로 복원 +NOTE UI 자동생성 우회). trial 유지 | 검증 중 |
 | M11.VAULT_PREFLIGHT | trial | v35.10 신설. 볼트 의존 스킬 마운트 선확인 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. `vault_dependency` 프론트매터 분산 선언 방식 | 검증 중 |
-| T3_PRIORITY | trial | v35.7 신설(M9>M10 동시 발동시 오류 정정 선행) | 검증 중 |
+| M12.MODE_GATES | trial | v35.11 신설. 실행 모드 트리거 3종(작업계획·핑퐁·리허설). Claude 기본 거동 통제 레이어. 정확 매칭 6종 + RELEASE(명시적 실행 지시) + AMBIGUOUS 처리("적용"·"반영"·"수정"→확인) | 검증 중 |
+| T3_PRIORITY | trial | v35.7 신설(M9>M10). v35.11 갱신(M9>M12>M10) | 검증 중 |
 
 ---
 
@@ -91,11 +92,13 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
 | frozen | 1 | 8% (M1) |
-| stable | 5 | 42% (M3·M4·M6·M7·M8) |
-| trial | 6 | 50% (M2·M5·M9·M10·M11·T3_PRIORITY) |
+| stable | 5 | 38% (M3·M4·M6·M7·M8) |
+| trial | 7 | 54% (M2·M5·M9·M10·M11·M12·T3_PRIORITY) |
 | 삭제/병합 | 29 | (이력) |
 
 > v35.7 LMM 한계 대응 5건 +KR 마스터 전환: +M2.COST_AWARE, +M3.TREE 그림정의 확장, +M7.SKILL_PRECEDENCE, +T3_PRIORITY 신설, +M10.UP_RESET. M3·M7 frozen→stable 강등.
 > v35.8 autoloop 결과 4건 keep (M3 집중): +hedge 9종 금지 단언형 대체, +UP 라벨 본문노출 STEALTH 강화, +OUTPUT_CAP(판단·분석 500자 + 압축순서), +L1 factual 직답 원칙. 품질 15/18→18/18 총길이 -10%. M3 stable 유지.
 > v35.9 +M10.CHAT_TITLE 복원: v34.1~v35.2 독립 M4→v35.3 "실행불가" 삭제→v35.9 M10 서브규칙 복원(NOTE 조항으로 UI 자동생성 제어 불가시 [제목제안] 대체). M10 trial 유지.
 > v35.10 +M11.VAULT_PREFLIGHT: 볼트 의존 스킬 마운트 선확인. 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. 분산 선언 방식(vault_dependency 프론트매터)으로 UP-스킬 커플링 제거. T2:5→6, modules 10→11.
+> v35.11 +M12.MODE_GATES: 실행 모드 트리거 3종(작업계획·핑퐁·리허설). 사고도구(trigger-dictionary)와 분리된 Claude 기본 거동 통제 레이어. T3 배치(PRIORITY M9>M12>M10). 정확 매칭 6종 + RELEASE/AMBIGUOUS/TRANSITION 규정. 핑퐁 ⇄ 작업계획 자유 전환. T3:2→3, modules 11→12. M12 trial.
+> v35.12 +M3.DENSITY.CLOSURE: L2·L3 종결부 "결국 [원요청]→[실제수행]" 1줄 매듭 필수. 산출물 링크 직전 배치, 자유형식 허용. 빈 선언·원요청 왜곡 FAIL. 사용자 피드백루프 단축 목적. 모듈수 변동 없음(M3 서브규칙 1건 추가). M3 stable 유지.
