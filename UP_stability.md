@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v35.8.md
+linked_to: UP_user-preferences_v35.10.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-16T00:00:00.000Z'
 ---
@@ -73,14 +73,15 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | M1.FRAME | frozen | v31.0~ 본질 불변. v35.4 frozen 승격 | 핵심 원칙 |
 | M2.FAST_LANE | trial | v35.7 +COST_AWARE(L0 BOOT 완전스킵). trial 유지 | 수정 발생 |
 | M3.DENSITY | stable | v35.8 hedge 9종 금지+STEALTH 강화+OUTPUT_CAP 압축순서(부연→층→어미보존)+L1 factual 직답 원칙 추가 (autoloop 4건 keep). stable 유지 | 수정 발생 |
-| ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가) | 삭제 |
+| ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가). v35.9 M10 서브규칙으로 복원 | 삭제→복원 |
 | M4.BEDROCK | stable | v32.4~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
 | M5.CONFIDENCE | stable | v35.5 +PATTERN_GUARD +CAUSATION 추가로 frozen→stable 강등 | 수정 발생 |
 | M6.INTENT_PARSE | stable | v33.0~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
 | M7.EDIT4 | stable | v35.7 +SKILL_PRECEDENCE(UP>스킬, SAFE_RULES 4건 예외). frozen→stable 강등 | 수정 발생 |
 | M8.VERIFY | stable | v35.6 GROUNDING 경량화+PRECEDENCE 추가(라이브락 해소). stable 유지 | 체계 확립 |
 | M9.ERROR_CORRECTION | trial | v33.0 신설. v35.4 trial 유지 | 검증 중 |
-| M10.TURN_OPS | trial | v35.7 +UP_RESET(자기실패 재부팅, 세션1회+2회째 개입). trial 유지 | 검증 중 |
+| M10.TURN_OPS | trial | v35.9 +CHAT_TITLE(세션 제목 한글 강제, v35.3 삭제본 M10 서브규칙으로 복원 +NOTE UI 자동생성 우회). trial 유지 | 검증 중 |
+| M11.VAULT_PREFLIGHT | trial | v35.10 신설. 볼트 의존 스킬 마운트 선확인 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. `vault_dependency` 프론트매터 분산 선언 방식 | 검증 중 |
 | T3_PRIORITY | trial | v35.7 신설(M9>M10 동시 발동시 오류 정정 선행) | 검증 중 |
 
 ---
@@ -89,10 +90,12 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
-| frozen | 1 | 9% (M1) |
-| stable | 5 | 45% (M3·M4·M6·M7·M8) |
-| trial | 5 | 45% (M2·M5·M9·M10·T3_PRIORITY) |
+| frozen | 1 | 8% (M1) |
+| stable | 5 | 42% (M3·M4·M6·M7·M8) |
+| trial | 6 | 50% (M2·M5·M9·M10·M11·T3_PRIORITY) |
 | 삭제/병합 | 29 | (이력) |
 
 > v35.7 LMM 한계 대응 5건 +KR 마스터 전환: +M2.COST_AWARE, +M3.TREE 그림정의 확장, +M7.SKILL_PRECEDENCE, +T3_PRIORITY 신설, +M10.UP_RESET. M3·M7 frozen→stable 강등.
 > v35.8 autoloop 결과 4건 keep (M3 집중): +hedge 9종 금지 단언형 대체, +UP 라벨 본문노출 STEALTH 강화, +OUTPUT_CAP(판단·분석 500자 + 압축순서), +L1 factual 직답 원칙. 품질 15/18→18/18 총길이 -10%. M3 stable 유지.
+> v35.9 +M10.CHAT_TITLE 복원: v34.1~v35.2 독립 M4→v35.3 "실행불가" 삭제→v35.9 M10 서브규칙 복원(NOTE 조항으로 UI 자동생성 제어 불가시 [제목제안] 대체). M10 trial 유지.
+> v35.10 +M11.VAULT_PREFLIGHT: 볼트 의존 스킬 마운트 선확인. 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. 분산 선언 방식(vault_dependency 프론트매터)으로 UP-스킬 커플링 제거. T2:5→6, modules 10→11.
