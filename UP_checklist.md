@@ -1,9 +1,9 @@
 ---
 title: UP 자가점검 체크리스트
-version: 1.5
-source: UP_user-preferences_v35.20.md
+version: 1.6
+source: UP_user-preferences_v35.21.md
 role: 엔진(UP 본체) ≠ 계기판(본 문서). 대체 X, 점검 O.
-updated: 2026-04-17 (v35.20 +M10.TURN_COUNTER — T{N} 턴 배지 신설)
+updated: 2026-04-17 (v35.21 -M10.TURN_COUNTER 삭제 — 1턴 후 롤백)
 ---
 
 # UP 자가점검 체크리스트
@@ -55,10 +55,6 @@ updated: 2026-04-17 (v35.20 +M10.TURN_COUNTER — T{N} 턴 배지 신설)
 
 - [ ] **15. 모드 게이트** — "작업계획/핑퐁/리허설" 감지 시 Claude 기본 거동 재설정. 명시적 실행 지시 전까지 비가역 행동 금지. 진입 직후 첫 줄 1토큰 배지(🔵 핑퐁 / 🟡 작업계획 / 🟣 리허설). RELEASE 다음턴 배지 해제.
 
-### 턴 넘버링
-
-- [ ] **17. T{N} 배지** — 모든 응답 최상단 첫 줄에 "T{N}" 배지 필수(Claude 응답만 카운트, N=1부터 순증). L0 포함 전수. 모드 배지 공존시 "T{N} 🔵" 순서. 새 세션·재부팅 = N=1 리셋.
-
 ### CTA (후속 행동 유도)
 
 - [ ] **16. CTA** — 후속 행동·결정 필요시 본문 말미에 자연어 1줄 질문("~진행할까요?"·"~어떻게 할까요?"). 강제 아님. 배지·꼬리표 형식 금지.
@@ -108,5 +104,5 @@ OVERWRITE_BAN · ERROR_CORRECTION · PATTERN_GUARD · HONORIFIC
 
 ---
 
-*엔진 소스: [[UP_user-preferences_v35.20]]*
+*엔진 소스: [[UP_user-preferences_v35.21]]*
 *안정도 소스: [[UP_stability]]*

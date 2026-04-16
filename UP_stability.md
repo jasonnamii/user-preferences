@@ -1,5 +1,5 @@
 ---
-linked_to: UP_user-preferences_v35.20.md
+linked_to: UP_user-preferences_v35.21.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-17T00:00:00.000Z'
 updated: '2026-04-17T00:00:00.000Z'
@@ -81,7 +81,7 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | M7.EDIT4 | stable | v35.7 +SKILL_PRECEDENCE(UP>스킬, SAFE_RULES 4건 예외). frozen→stable 강등 | 수정 발생 |
 | M8.VERIFY | stable | v35.6 GROUNDING 경량화+PRECEDENCE 추가(라이브락 해소). stable 유지 | 체계 확립 |
 | M9.ERROR_CORRECTION | trial | v33.0 신설. v35.4 trial 유지 | 검증 중 |
-| M10.TURN_OPS | trial | v35.20 +TURN_COUNTER(세션 턴 넘버링, T{N} 배지 전수). v35.19 CONTEXT_LINK 삭제(심플화). v35.18 +SELF_CHECK. v35.14 CHAT_TITLE 전체 삭제. trial 유지 | 수정 발생 |
+| M10.TURN_OPS | trial | v35.21 TURN_COUNTER 삭제(1턴 후 철회, 토큰 측정 불가 확인). v35.20 +TURN_COUNTER. v35.19 CONTEXT_LINK 삭제. v35.18 +SELF_CHECK. v35.14 CHAT_TITLE 전체 삭제. trial 유지 | 수정 발생 |
 | M11.VAULT_PREFLIGHT | trial | v35.10 신설. 볼트 의존 스킬 마운트 선확인 3단 차등(HARD·SOFT·OPTIONAL) + 세션 1회 캐시. `vault_dependency` 프론트매터 분산 선언 방식 | 검증 중 |
 | M12.MODE_GATES | trial | v35.15 +BADGE(모드 진입시 🔵핑퐁/🟡작업계획/🟣리허설/⚪자유실행 1토큰 배지 첫 줄 필수, 모드 혼동 해소). v35.11 신설. 실행 모드 트리거 3종. 정확 매칭 6종 + RELEASE + AMBIGUOUS 처리 | 검증 중 |
 | T3_PRIORITY | trial | v35.7 신설(M9>M10). v35.11 갱신(M9>M12>M10) | 검증 중 |
@@ -111,3 +111,4 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 > v35.18 +M3.DENSITY.BADGE_SYNTAX(MID impact, 기능 추가 1건): 배지 출력 규약 명시. 모든 배지(모드·ETA·연계·미확정·WEIGHT) 이모지+텍스트 원형만 허용, HTML 태그(<mark>·<span>·<b>) 및 마크다운 강조(**·_·`) 래핑 FAIL. 사용자 지적 반영(렌더러 미지원 환경 <mark> 원시 노출 버그). 5개 배지 규칙 공통 적용. M3 stable 유지.
 > v35.19 심플화 대삭제(MID impact, 삭제 9건 / 추가 1건): 사용자 "말이 너무 많다" 지적. 출력 부풀림 규칙 9건 전면 삭제 — M3.CLOSURE·M3.NEXT_ACTION·M2.ETA_BADGE·M5.UNCERTAINTY_FLAG·M10.CONTEXT_LINK·M2.STEALTH.EXCEPTION·M3.FINAL_CHECK·M2.BOOT·M3.BADGE_SYNTAX. 대체 신규 +M3.CTA(자연어 1줄 질문, 규칙 없이 상황 판단). 보존: M12.BADGE 🔵🟡🟣 3종(모드 구분 필수). 배지 7종→3종. INVARIANT 6/6 보존(장식 레이어만 제거). M2·M3·M5·M10 상태 유지(강등 없음).
 > v35.20 +M10.TURN_COUNTER(LOW impact, 기능 추가 1건): 세션 내 응답턴 넘버링 "T{N}" 배지 전수 적용(모든 턴, L0 포함). Claude 응답만 카운트, N=1부터 순증, 재부팅·새세션 리셋. CONTEXT_WATCH/SELF_CHECK/UP_RESET 트리거 계산 기준점 제공. 모드 배지 공존시 "T{N} 🔵" 순서. 사용자 스킵 요청시 1회 허용. v35.19 심플화 원칙 무충돌(T{N}은 구조 메타정보, 장식 ✗). M10 trial 유지.
+> v35.21 -M10.TURN_COUNTER 전면 삭제(MID impact, 1턴 사이클 롤백): v35.20 신설→v35.21 철회. 이유 — 턴 정의 모호성 발견 후 토큰 누적 대안 검토, Claude 자체 토큰 측정 불가 확인(컨텍스트·MCP·스킬 로드 블랙박스, 휴리스틱은 ±20% 오차+스킬 토큰 누락). 실효성 없음 결론. v35.19 심플화 원칙 복귀. 체크리스트 #17 동반 삭제. INVARIANT 6/6 보존. M10 trial 유지.
