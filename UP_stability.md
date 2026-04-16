@@ -1,7 +1,7 @@
 ---
-linked_to: UP_user-preferences_v35.3.md
+linked_to: UP_user-preferences_v35.8.md
 created: 2026-04-08T00:00:00.000Z
-last_reviewed: '2026-04-14T00:00:00.000Z'
+last_reviewed: '2026-04-16T00:00:00.000Z'
 ---
 
 # UP Stability Map
@@ -70,17 +70,18 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~CHAT_TITLE~~ | — | v35.0에서 M4.CHAT_TITLE로 재지정 | Tier 재편 |
 | | | | |
 | **v35.0 Tier Architecture** | | | |
-| M1.FRAME | trial | v35.0 T1. 기존 FRAME 계승 | Tier 재편 trial 유지 |
-| M2.FAST_LANE | trial | v35.3 +STEALTH 서브규칙(WEIGHT 노출 차단 강화) | 수정 trial 유지 |
-| M3.DENSITY | trial | v35.1 TREE 체크리스트→생성원리 전환, FINAL_CHECK·DIAGNOSIS_RULE 정합 | 수정 trial 유지 |
+| M1.FRAME | frozen | v31.0~ 본질 불변. v35.4 frozen 승격 | 핵심 원칙 |
+| M2.FAST_LANE | trial | v35.7 +COST_AWARE(L0 BOOT 완전스킵). trial 유지 | 수정 발생 |
+| M3.DENSITY | stable | v35.8 hedge 9종 금지+STEALTH 강화+OUTPUT_CAP 압축순서(부연→층→어미보존)+L1 factual 직답 원칙 추가 (autoloop 4건 keep). stable 유지 | 수정 발생 |
 | ~~M4.CHAT_TITLE~~ | — | v35.3 삭제(앱 UI 영역—실행 불가) | 삭제 |
-| M4.BEDROCK | trial | v35.1 RULE에 CONFIDENCE 인라인 병기 추가. v35.3 M5→M4 재넘버링 | 수정 trial 유지 |
-| M5.CONFIDENCE | trial | v35.0 T2. +CAREFUL_READ 흡수. v35.3 M6→M5 재넘버링 | 병합 trial 리셋 |
-| M6.INTENT_PARSE | trial | v35.0 T2. +INFO_BRANCH 흡수. v35.3 M7→M6 재넘버링 | 병합 trial 리셋 |
-| M7.EDIT4 | trial | v35.1 GATE L1 auto 승격+CONFIDENCE선행 삭제. v35.3 M8→M7 재넘버링 | 수정 trial 유지 |
-| M8.VERIFY | trial | v35.0 T2. 기존 VERIFY 계승. v35.3 M9→M8 재넘버링 | Tier 재편 trial 유지 |
-| M9.ERROR_CORRECTION | trial | v35.0 T3. 기존 ERROR_CORRECTION 계승. v35.3 M10→M9 재넘버링 | Tier 재편 trial 유지 |
-| M10.TURN_OPS | trial | v35.0 T3. 기존 TURN_OPS 계승. v35.3 M11→M10 재넘버링 | Tier 재편 trial 유지 |
+| M4.BEDROCK | stable | v32.4~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
+| M5.CONFIDENCE | stable | v35.5 +PATTERN_GUARD +CAUSATION 추가로 frozen→stable 강등 | 수정 발생 |
+| M6.INTENT_PARSE | stable | v33.0~ 구조 안정. v35.4 stable 승격 | 체계 확립 |
+| M7.EDIT4 | stable | v35.7 +SKILL_PRECEDENCE(UP>스킬, SAFE_RULES 4건 예외). frozen→stable 강등 | 수정 발생 |
+| M8.VERIFY | stable | v35.6 GROUNDING 경량화+PRECEDENCE 추가(라이브락 해소). stable 유지 | 체계 확립 |
+| M9.ERROR_CORRECTION | trial | v33.0 신설. v35.4 trial 유지 | 검증 중 |
+| M10.TURN_OPS | trial | v35.7 +UP_RESET(자기실패 재부팅, 세션1회+2회째 개입). trial 유지 | 검증 중 |
+| T3_PRIORITY | trial | v35.7 신설(M9>M10 동시 발동시 오류 정정 선행) | 검증 중 |
 
 ---
 
@@ -88,9 +89,10 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
-| frozen | 0 | 0% |
-| stable | 0 | 0% |
-| trial | 10 | 100% |
+| frozen | 1 | 9% (M1) |
+| stable | 5 | 45% (M3·M4·M6·M7·M8) |
+| trial | 5 | 45% (M2·M5·M9·M10·T3_PRIORITY) |
 | 삭제/병합 | 29 | (이력) |
 
-> v35.3 M4.CHAT_TITLE 삭제. M2.FAST_LANE STEALTH 신설. 전모듈 재넘버링(M4~M10). 10모듈 trial 유지.
+> v35.7 LMM 한계 대응 5건 +KR 마스터 전환: +M2.COST_AWARE, +M3.TREE 그림정의 확장, +M7.SKILL_PRECEDENCE, +T3_PRIORITY 신설, +M10.UP_RESET. M3·M7 frozen→stable 강등.
+> v35.8 autoloop 결과 4건 keep (M3 집중): +hedge 9종 금지 단언형 대체, +UP 라벨 본문노출 STEALTH 강화, +OUTPUT_CAP(판단·분석 500자 + 압축순서), +L1 factual 직답 원칙. 품질 15/18→18/18 총길이 -10%. M3 stable 유지.
