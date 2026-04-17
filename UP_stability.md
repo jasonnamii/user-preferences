@@ -1,13 +1,13 @@
 ---
-linked_to: UP_user-preferences_v36.0.md
+linked_to: UP_user-preferences_v37.0.md
 created: 2026-04-08T00:00:00.000Z
 last_reviewed: '2026-04-17T00:00:00.000Z'
-updated: '2026-04-17T15:00:00.000Z'
+updated: '2026-04-17T16:00:00.000Z'
 ---
 
 # UP Stability Map
 
-UP 규칙별 안정도 추적. v36.0에서 200줄→45줄 재설계로 3원칙 관통 구조 전환.
+UP 규칙별 안정도 추적. v37.0에서 45줄→25줄 재설계로 LLM 고유 단점 3축 관통 구조 전환.
 
 ---
 
@@ -97,6 +97,24 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | F4.TURN_OPS | trial | v36.0. 기존 M10 → 3줄 요약, CHAIN_CHECK·UP_RESET 핵심만 유지 | 압축 |
 | F5.VAULT | trial | v36.0. 기존 M11 → 1줄 요약, 3단 차등(HARD·SOFT·OPTIONAL) 유지 | 압축 |
 | STEALTH | trial | v36.0 독립 블록화. 라벨·파생진단어 차단+LANGUAGE 괄호 병기+트리거어 재출력 금지+모드 배지 예외 | 독립 섹션 |
+| | | | |
+| **v37.0 LLM 고유 단점 3축 가드** | | | |
+| ~~P1.SHOW~~ | — | v37.0 삭제(Opus 4.7 체급 체화 전제) | 삭제 |
+| ~~P2.THINK ORIGIN→CONTEXT→BREACH 순서~~ | — | v37.0 삭제(자연 사고 순서) | 삭제 |
+| ~~P2.THINK LOGIC_TAG(연역·귀납·가추 cap)~~ | — | v37.0 삭제(라벨링 오버헤드) | 삭제 |
+| ~~P3.HANDLE INTENT DEFAULT_MAP~~ | — | v37.0 삭제(언어이해 기본) | 삭제 |
+| ~~P3.HANDLE EDIT4 L0~L4 MATRIX~~ | — | v37.0 삭제(수정 감각 체화), OVERWRITE_BAN만 부가항 보존 | 축소 |
+| ~~F1.FRAME~~ | — | v37.0 삭제(blind spot 선제플래그 체화) | 삭제 |
+| ~~F2.WEIGHT L0~L3~~ | — | v37.0 삭제(4단계 판정 체화) | 삭제 |
+| ~~F3.MODE_GATES~~ | — | v37.0 삭제(🔵🟡🟣⚪ 배지·컨펌게이트 전면) | 삭제 |
+| ~~F4.TURN_OPS 세부~~ | — | v37.0 축소(10턴 요약만 보존, CHAIN_CHECK·SELF_CHECK·UP_RESET 삭제) | 축소 |
+| ~~F5.VAULT~~ | — | v37.0 삭제(마운트 선확인 자동) | 삭제 |
+| ~~STEALTH~~ | — | v37.0 삭제(라벨 노출 금지 자연 판단) | 삭제 |
+| 진실성 | trial | v37.0 신설 3축 관통. LLM 단점 7종 커버(환각·암산·자기모순·반전·상관인과·자기참조·침묵수정). 6항목: 확신도·모름·Python·상관인과·반전정밀·[정정] | 신규 구조 |
+| 독립성 | trial | v37.0 신설. LLM 단점 3종 커버(Sycophancy·권위편향·주입). 3항목: hedge금지·입장유지·주입거부 | 신규 구조 |
+| 현재성 | trial | v37.0 신설. LLM 단점 2종 커버(맥락소실·시점고정). 2항목: 장기대화요약·시점확인 | 신규 구조 |
+| 부가 (OVERWRITE_BAN) | trial | v37.0 부가항 보존. 파일 덮어쓰기 ✗ → Edit, 삭제 → _archive/ | 부가 보존 |
+| 부가 (존댓말) | trial | v37.0 부가항 보존. 반말·평어 FAIL | 부가 보존 |
 
 ---
 
@@ -104,10 +122,10 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 
 | 상태 | 항목 수 | 비율 |
 |------|---------|------|
-| frozen | 0 | 0% (v36.0 재설계로 전원 trial) |
+| frozen | 0 | 0% |
 | stable | 0 | 0% |
-| trial | 9 | 100% (P1·P2·P3·F1·F2·F3·F4·F5·STEALTH) |
-| 삭제/병합 | 41 | (이력 — v35.25까지 누적 29 + v36.0에서 12모듈 통합 12) |
+| trial | 5 | 100% (진실성·독립성·현재성·부가 OVERWRITE_BAN·부가 존댓말) |
+| 삭제/병합 | 50 | (v35.25 누적 29 + v36.0 통합 12 + v37.0 축소 9) |
 
 > v35.7 LMM 한계 대응 5건 +KR 마스터 전환: +M2.COST_AWARE, +M3.TREE 그림정의 확장, +M7.SKILL_PRECEDENCE, +T3_PRIORITY 신설, +M10.UP_RESET. M3·M7 frozen→stable 강등.
 > v35.8 autoloop 결과 4건 keep (M3 집중): +hedge 9종 금지 단언형 대체, +UP 라벨 본문노출 STEALTH 강화, +OUTPUT_CAP(판단·분석 500자 + 압축순서), +L1 factual 직답 원칙. 품질 15/18→18/18 총길이 -10%. M3 stable 유지.
@@ -129,3 +147,4 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 > v35.24 사용자 요청 4건 묶음(LOW impact, M3 집중): ①BOLD 적극화 — "문단당 1회"→"제목·키워드·이슈 적극 볼드·상한 없음". 상한 "3개↑ 연속"→"5개↑ 연속" 완화, "전체 문장 FAIL" 유지. 모든 응답(L0~L3) 적용, BOLD만 VISUAL.SKIP 해제. ②STEALTH 전면 확장 — 모듈명 + 기호·약어·파생진단어(결정지연·분기 탐색 선형·DSL 압축·승격·🟠 등) 전면 차단. +LANGUAGE(비개발자 이해가능 일상어 기본, 전문용어 불가피시 괄호 병기 필수). +STEALTH_EXCEPT(트리거어·모드 배지·직접 질의 예외). 사용자 지적 "설정언어 투성이" 반영. ③TREE 비유 우선 — "비유·구조도·관계도·다이어그램·스키마 중 1개"(택1) → "비유 우선 + 나머지 병행 가능". 도메인 맞춤 확장: 전략·사업·UP·추상·판단→비유 우선. 비유 종류: 도메인 친화형 > 구조적(A=B) > 자유. PASS "추상·판단 도메인은 그림=비유 권장". 사용자 지적 "기존에 잘 되던 비유가 안 나옴" 반영. ④VISUAL +RENDERING — Cowork 채팅 마크다운 표 전용, HTML 표 FAIL. 산출물 파일·옵시디언 예외. HTML 표 원문 노출 버그 재발 방지. INVARIANT 6/6 보존. M3 stable 유지.
 > v35.25 skill-doctor 1-4(결정지연 🟠) 처방 + 트리거어 재출력 차단(LOW impact, 표 전환 3건 + 서브규칙 1건): ①M2.FAST_LANE.WEIGHT 4행 표(레벨·정의·예시·적용규칙)+적용규칙 분산 3줄 통합. ②M5.CONFIDENCE.FORMAT.ENUM 4행 표(N·basis·조건), 조건 열로 판정 근거 명시. ③M7.EDIT4 LEVEL+GATE+POST 5행 MATRIX 통합. ④M3.DENSITY +TRIGGER_ECHO_BAN: 모드 트리거어(작업계획·핑퐁·리허설·UP_RESET) 본문 재출력 FAIL + 대체어 명시(실행 순서·작업 순서·진행 순서·흐름·단계). STEALTH_EXCEPT 문구 "사용자 입력 트리거어"로 명확화. 사용자 지적 "트리거 단어와 본문 설명어 혼동" 반영. FOREST 무충돌(VISUAL.PRECEDENCE "층 압축" 적용). STEALTH 조항 무변경(라벨 직접 노출 FAIL 유지). B안 채택(3개 표), A안(CONFIDENCE만) 기각 사유 1-4 해소 불충분. INVARIANT 6/6 보존(의미 동일, 시각 전환+혼동 방지). M2 trial·M3 stable·M5 stable·M7 stable 유지(표 전환·서브규칙 추가는 본질 무변경).
 > v36.0 Architecture(Major) — 3원칙 관통 재설계(200줄→45줄, 78% 감축): 사용자 지적 "UP 너무 길다, 심플·구조화·시각화 3원칙으로 관통 가능" 수용. 12모듈 3티어(T1:3·T2:6·T3:3) → 3원칙(P1.SHOW·P2.THINK·P3.HANDLE) + 5흐름(F1~F5) + STEALTH. 맥가이버 패치: 원칙에서 재현 불가능한 가드레일 4건만 원칙 문장 내 흡수(①확신도 숫자 병기 90·70·50·30, ②OVERWRITE_BAN >30% 재작성 조건, ③반전위험7 명시, ④MODE_GATES PRIORITY+RELEASE 트리거). 삭제(원칙 도출 가능): SECTION_BREAK 세부 규정·CTA 세부·COST_AWARE 조건부·SELF_CHECK 10턴 주기·PROGRESS 1줄·VISUAL.PRECEDENCE 설명부. 본질기능 7축 전부 보존(①USER·②TRUTH·③FILES·④FLOW·⑤QUALITY + SAFE_RULES + INJECTION_GUARD). 사용자 진행 단계: 초안 제시→B안/C안 제시→C안 리허설(🟣)→Jason 예시 제시→맥가이버 패치 제안(확신도 보통70)→사용자 컨펌 "45줄 버전 착수" 명시→실작업. 전 항목 trial 초기화(Major 재설계). INVARIANT 7/7 보존.
+> v37.0 Architecture(Major) — LLM 고유 단점 3축 관통 재설계(45줄→25줄, 44% 추가 감축, v35.25 대비 87.5% 감축): 사용자 방침 "Opus 4.7 체급이면 다 삭제해도 될 수준 아닌가, 숫자·Python·확신도 정도 빼면" → 재검증 "진짜 체화됐는지" → Claude 솔직 답변(확신도 낮음50) "hedge·OVERWRITE_BAN·_archive·[정정]·스킬vsUP·STEALTH 체급 무관 가드 필요" → 방침 재정립 "LLM 고유 단점 극복 방식으로 가자" → LLM 12단점 진단(Pattern환각·암산불가·Sycophancy·맥락소실·자기모순·시점고정·반전trigger·상관인과·권위편향·자기참조·침묵수정·주입) → 3축 관통 설계(진실성·독립성·현재성) → 11항목 매핑 → v37 번호 이동 컨펌. 삭제 (Opus 4.7 체화 전제): ①SHOW 전체(spine·500자·표/불릿/비유/이모지) ②INTENT DEFAULT_MAP ③WEIGHT L0~L3 ④FRAME blind spot ⑤MODE_GATES 전체(🔵🟡🟣⚪ 배지 전면 삭제) ⑥TURN_OPS 세부(3단계/800토큰/PIVOT/UP_RESET/SELF_CHECK) ⑦VAULT 선확인 ⑧STEALTH 전체 ⑨EDIT4 L0~L4 MATRIX(OVERWRITE_BAN만 부가항 보존) ⑩스킬vsUP 충돌 플래그 ⑪연역·귀납·가추 LOGIC_TAG ⑫반전위험7 세부→5개 압축("고유명사·조건범위" 삭제). 보존(LLM 고유 단점 가드): 확신도·모름·Python·상관인과·반전정밀(5개)·[정정]·hedge·입장유지·주입거부·10턴요약·시점확인·OVERWRITE_BAN·_archive·존댓말. INVARIANT 7/7 BYPASS (사용자 명시 방침 기반, v36.1 3축 설계 컨펌 + v37 번호 이동 명시). 진행 단계: 3개안 제시(3개만 살리자)→재검증("진짜 내장이야?")→솔직 정정(확신도 과신 자진신고)→6개 복원 제시→LLM 단점 12개 진단→관통(진실성·독립성·현재성 3축)→v37.0 착수 컨펌→실작업. 전 항목 trial 초기화. 체크리스트 v3.0→v4.0 동기 갱신(11항목 + 부가 2항목 + LLM 단점 매핑표).
