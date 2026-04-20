@@ -1,13 +1,13 @@
 ---
-linked_to: UP_user-preferences_v37.0.md
+linked_to: UP_user-preferences_v37.8.md
 created: 2026-04-08T00:00:00.000Z
-last_reviewed: '2026-04-17T00:00:00.000Z'
-updated: '2026-04-17T16:00:00.000Z'
+last_reviewed: '2026-04-20T00:00:00.000Z'
+updated: '2026-04-20T00:00:00.000Z'
 ---
 
 # UP Stability Map
 
-UP 규칙별 안정도 추적. v37.0에서 45줄→25줄 재설계로 LLM 고유 단점 3축 관통 구조 전환.
+UP 규칙별 안정도 추적. v37.0에서 45줄→25줄 재설계로 LLM 고유 단점 3축 관통 구조 전환. v37.1에서 SELF_CHECK 1줄 복원. v37.2에서 "간결성" 축 신설(3축→4축). v37.3에서 hedge 규정 정밀화. v37.4에서 전수점검 12건 통합 + DSL 하이브리드 전환 + 메타 2건 신설. v37.5에서 USER_CONTEXT 섹션 0 신설. v37.6에서 USER 식별 강화. v37.7에서 FX·단위 최상위 FAIL 가드 신설. v37.8에서 체화 자연거동 삭제·축약(REVERSAL·TIME_ANCHOR·HONORIFIC 3건 삭제 + USER_CONTEXT 6→3항목·FX_UNIT_CRIT ⑤ 리스트 일반화 축약, 49줄→40줄 -18%).
 
 ---
 
@@ -110,9 +110,16 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 | ~~F4.TURN_OPS 세부~~ | — | v37.0 축소(10턴 요약만 보존, CHAIN_CHECK·SELF_CHECK·UP_RESET 삭제) | 축소 |
 | ~~F5.VAULT~~ | — | v37.0 삭제(마운트 선확인 자동) | 삭제 |
 | ~~STEALTH~~ | — | v37.0 삭제(라벨 노출 금지 자연 판단) | 삭제 |
-| 진실성 | trial | v37.0 신설 3축 관통. LLM 단점 7종 커버(환각·암산·자기모순·반전·상관인과·자기참조·침묵수정). 6항목: 확신도·모름·Python·상관인과·반전정밀·[정정] | 신규 구조 |
-| 독립성 | trial | v37.0 신설. LLM 단점 3종 커버(Sycophancy·권위편향·주입). 3항목: hedge금지·입장유지·주입거부 | 신규 구조 |
-| 현재성 | trial | v37.0 신설. LLM 단점 2종 커버(맥락소실·시점고정). 2항목: 장기대화요약·시점확인 | 신규 구조 |
+| 진실성 | trial | v37.8 REVERSAL 삭제(체화). 6→5항목(CONFIDENCE·UNKNOWN·NUMERIC·FX_UNIT_CRIT·CAUSATION·CORRECTION). LLM 단점 5종 커버(환각·암산·상관인과·침묵수정·FX단위자릿수) | 수정 발생 |
+| 독립성 | trial | v37.4 INJECTION 확장: 직접주입+간접주입. v37.3 hedge 규정 정밀화. v37.0 신설. LLM 단점 3종 커버(Sycophancy·권위편향·주입). 3항목 | 수정 발생 |
+| 현재성 | trial | v37.8 TIME_ANCHOR 삭제(체화). 3→2항목(SUMMARY·SELF_CHECK). LLM 단점 2종 커버(맥락소실·자기참조 맹점) | 수정 발생 |
+| 간결성 | trial | v37.4 ASK_ALLOWED 2→3조건(+③비용편차≥10x). DSL 전환. v37.2 신설 4번째 축. 5항목 | 수정 발생 |
+| 메타 규칙 (v37.4 신설) | trial | M1.축간 우선순위(진실성>독립성>현재성>간결성, 충돌시 상위 우선), M2.체급 재평가(모델 메이저 업데이트 시 skill-doctor 재진단). 구조적 메타 레이어, 헤더 주석 2줄 | 신규 구조 |
+| 사용자 컨텍스트 (v37.5 신설 → v37.6 강화 → v37.8 축약) | critical-trial | USER(Jason=최남희, 형), MENTOR(피디님=김형석). v37.6에서 6항목(USER·MENTOR·ADDRESS·FIRST_ADDR·CROSS_CHECK·VIOLATION) → v37.8에서 3항목 축약(USER·MENTOR·ADDRESS 1줄 통합). ADDRESS 1줄에 세션첫응답 강제·USER를 피디님 호명=최상위 FAIL+정정 모두 흡수. 식별 핵심은 보존, 프로토콜 상세는 원리로 수렴 | 축약 |
+| FX_UNIT_CRIT (v37.7 신설 → v37.8 축약) | critical-trial | 진실성 축 서브규칙. {환율·통화변환·단위변환·자릿수·0갯수} 최상위 FAIL 영역. 6항목: ①Python 왕복역산 오차≤0.01% ②환율 3요소 명기 ③자릿수 3중표기 ④병기통화 양방독립계산+역산대조 ⑤단위변환 전체(통화·길이·온도·질량·부피 등) Python강제 [v37.8 리스트 일반화] ⑥오류시 파생 전수재계산. KISAS 인니 IDR·KRW 병기 환경 선제대응 | 축약 |
+| 부가 (HONORIFIC) (v37.8 삭제) | — | 반말·평어 FAIL 규칙. Opus 4.7 한국어 존댓말 디폴트 체화 확인 → 삭제 | 체화 삭제 |
+| REVERSAL (v37.8 삭제) | — | 단위·긍부정·시점·주어·비교방향·조건범위·이중부정 정밀읽기. Opus 4.7 자연 정밀읽기 체화 + FX_UNIT_CRIT가 단위 커버 → 삭제 | 체화 삭제 |
+| TIME_ANCHOR (v37.8 삭제) | — | 오늘날짜 기준·cutoff 처리. env 날짜 주입·cutoff 자연 인지 체화 → 삭제 | 체화 삭제 |
 | 부가 (OVERWRITE_BAN) | trial | v37.0 부가항 보존. 파일 덮어쓰기 ✗ → Edit, 삭제 → _archive/ | 부가 보존 |
 | 부가 (존댓말) | trial | v37.0 부가항 보존. 반말·평어 FAIL | 부가 보존 |
 
@@ -124,8 +131,8 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 |------|---------|------|
 | frozen | 0 | 0% |
 | stable | 0 | 0% |
-| trial | 5 | 100% (진실성·독립성·현재성·부가 OVERWRITE_BAN·부가 존댓말) |
-| 삭제/병합 | 50 | (v35.25 누적 29 + v36.0 통합 12 + v37.0 축소 9) |
+| trial | 6 | 100% (진실성·독립성·현재성·간결성·USER_CONTEXT·부가 OVERWRITE_BAN) |
+| 삭제/병합 | 53 | (v35.25 누적 29 + v36.0 통합 12 + v37.0 축소 9 + v37.8 체화삭제 3) |
 
 > v35.7 LMM 한계 대응 5건 +KR 마스터 전환: +M2.COST_AWARE, +M3.TREE 그림정의 확장, +M7.SKILL_PRECEDENCE, +T3_PRIORITY 신설, +M10.UP_RESET. M3·M7 frozen→stable 강등.
 > v35.8 autoloop 결과 4건 keep (M3 집중): +hedge 9종 금지 단언형 대체, +UP 라벨 본문노출 STEALTH 강화, +OUTPUT_CAP(판단·분석 500자 + 압축순서), +L1 factual 직답 원칙. 품질 15/18→18/18 총길이 -10%. M3 stable 유지.
@@ -148,3 +155,10 @@ REVIEW_CYCLE ::= up-manager 파이프라인 내 자동 갱신
 > v35.25 skill-doctor 1-4(결정지연 🟠) 처방 + 트리거어 재출력 차단(LOW impact, 표 전환 3건 + 서브규칙 1건): ①M2.FAST_LANE.WEIGHT 4행 표(레벨·정의·예시·적용규칙)+적용규칙 분산 3줄 통합. ②M5.CONFIDENCE.FORMAT.ENUM 4행 표(N·basis·조건), 조건 열로 판정 근거 명시. ③M7.EDIT4 LEVEL+GATE+POST 5행 MATRIX 통합. ④M3.DENSITY +TRIGGER_ECHO_BAN: 모드 트리거어(작업계획·핑퐁·리허설·UP_RESET) 본문 재출력 FAIL + 대체어 명시(실행 순서·작업 순서·진행 순서·흐름·단계). STEALTH_EXCEPT 문구 "사용자 입력 트리거어"로 명확화. 사용자 지적 "트리거 단어와 본문 설명어 혼동" 반영. FOREST 무충돌(VISUAL.PRECEDENCE "층 압축" 적용). STEALTH 조항 무변경(라벨 직접 노출 FAIL 유지). B안 채택(3개 표), A안(CONFIDENCE만) 기각 사유 1-4 해소 불충분. INVARIANT 6/6 보존(의미 동일, 시각 전환+혼동 방지). M2 trial·M3 stable·M5 stable·M7 stable 유지(표 전환·서브규칙 추가는 본질 무변경).
 > v36.0 Architecture(Major) — 3원칙 관통 재설계(200줄→45줄, 78% 감축): 사용자 지적 "UP 너무 길다, 심플·구조화·시각화 3원칙으로 관통 가능" 수용. 12모듈 3티어(T1:3·T2:6·T3:3) → 3원칙(P1.SHOW·P2.THINK·P3.HANDLE) + 5흐름(F1~F5) + STEALTH. 맥가이버 패치: 원칙에서 재현 불가능한 가드레일 4건만 원칙 문장 내 흡수(①확신도 숫자 병기 90·70·50·30, ②OVERWRITE_BAN >30% 재작성 조건, ③반전위험7 명시, ④MODE_GATES PRIORITY+RELEASE 트리거). 삭제(원칙 도출 가능): SECTION_BREAK 세부 규정·CTA 세부·COST_AWARE 조건부·SELF_CHECK 10턴 주기·PROGRESS 1줄·VISUAL.PRECEDENCE 설명부. 본질기능 7축 전부 보존(①USER·②TRUTH·③FILES·④FLOW·⑤QUALITY + SAFE_RULES + INJECTION_GUARD). 사용자 진행 단계: 초안 제시→B안/C안 제시→C안 리허설(🟣)→Jason 예시 제시→맥가이버 패치 제안(확신도 보통70)→사용자 컨펌 "45줄 버전 착수" 명시→실작업. 전 항목 trial 초기화(Major 재설계). INVARIANT 7/7 보존.
 > v37.0 Architecture(Major) — LLM 고유 단점 3축 관통 재설계(45줄→25줄, 44% 추가 감축, v35.25 대비 87.5% 감축): 사용자 방침 "Opus 4.7 체급이면 다 삭제해도 될 수준 아닌가, 숫자·Python·확신도 정도 빼면" → 재검증 "진짜 체화됐는지" → Claude 솔직 답변(확신도 낮음50) "hedge·OVERWRITE_BAN·_archive·[정정]·스킬vsUP·STEALTH 체급 무관 가드 필요" → 방침 재정립 "LLM 고유 단점 극복 방식으로 가자" → LLM 12단점 진단(Pattern환각·암산불가·Sycophancy·맥락소실·자기모순·시점고정·반전trigger·상관인과·권위편향·자기참조·침묵수정·주입) → 3축 관통 설계(진실성·독립성·현재성) → 11항목 매핑 → v37 번호 이동 컨펌. 삭제 (Opus 4.7 체화 전제): ①SHOW 전체(spine·500자·표/불릿/비유/이모지) ②INTENT DEFAULT_MAP ③WEIGHT L0~L3 ④FRAME blind spot ⑤MODE_GATES 전체(🔵🟡🟣⚪ 배지 전면 삭제) ⑥TURN_OPS 세부(3단계/800토큰/PIVOT/UP_RESET/SELF_CHECK) ⑦VAULT 선확인 ⑧STEALTH 전체 ⑨EDIT4 L0~L4 MATRIX(OVERWRITE_BAN만 부가항 보존) ⑩스킬vsUP 충돌 플래그 ⑪연역·귀납·가추 LOGIC_TAG ⑫반전위험7 세부→5개 압축("고유명사·조건범위" 삭제). 보존(LLM 고유 단점 가드): 확신도·모름·Python·상관인과·반전정밀(5개)·[정정]·hedge·입장유지·주입거부·10턴요약·시점확인·OVERWRITE_BAN·_archive·존댓말. INVARIANT 7/7 BYPASS (사용자 명시 방침 기반, v36.1 3축 설계 컨펌 + v37 번호 이동 명시). 진행 단계: 3개안 제시(3개만 살리자)→재검증("진짜 내장이야?")→솔직 정정(확신도 과신 자진신고)→6개 복원 제시→LLM 단점 12개 진단→관통(진실성·독립성·현재성 3축)→v37.0 착수 컨펌→실작업. 전 항목 trial 초기화. 체크리스트 v3.0→v4.0 동기 갱신(11항목 + 부가 2항목 + LLM 단점 매핑표).
+> v37.4 Minor(2026-04-20) — 12건 통합 + DSL 하이브리드 전환(33줄→31줄, -6%): 사용자 지적 "UP 전수점검 후 클로드 LLM 충분활용 수정안 제안" → 전수 스캔 12건 도출(HIGH 3·MID 4·LOW 3·Meta 2) → 리허설 컨펌 → 하이브리드 안 채택. 변경: ①헤더 2줄 추가(축간 우선순위·체급 재평가) ②진실성 5건 확장(UNKNOWN+path·NUMERIC+2nd·CAUSATION 3단계·REVERSAL 5→7·CORRECTION+추적결과) ③독립성 INJECTION+간접주입 ④현재성 SUMMARY 조건기반·SELF_CHECK+반사실 ⑤간결성 ASK 2→3조건 ⑥항목 DSL 전환(::= BNF). INVARIANT 7/7 보존(의미 확장·문법 전환만). 체크리스트 v4.3→v4.4 동기(메타 2 + FULL 13). 파일명 v37.3.md→v37.4.md 리네임, v37.3은 _archive/로 보존. Meta-B(분기별 skill-doctor 자동진단) 본체 외 schedule 스킬 분리. 4축 전체 trial 유지(수정 발생).
+
+> v37.5 Minor(2026-04-20) — USER_CONTEXT 섹션 0 신설(31줄→37줄, +19%): 사용자 요청 "UP 업데이트 필요 — Jason·피디님 관계 추가". 선택지 4개 제시(①GRAPH.md 엔티티 ②UP 섹션 신설 ③CLAUDE.md ④헤더 주석) → ② 채택. 변경: ①섹션 0 신설 3항목 DSL(USER·MENTOR·ADDRESS) ②Jason 4대표 명시(라텔앤드파트너즈·Cre8orClub·KISAS플러스·KISAS플랫폼) ③피디님(김형석) 멘토·유일 비즈니스 파트너 + 3대표(노느니특공대·KISAS홀딩스·케이노트) ④ADDRESS 규칙("형"·"피디님" 고정, 타 호칭 FAIL). HONORIFIC 부가항과 레이어 분리(존댓말 유지). INVARIANT 7/7 보존(4축 규칙 무변경, USER축 강화). 체크리스트 v4.4→v4.5 동기(섹션 0 추가, FULL 13 무변경). 파일명 v37.4.md→v37.5.md 리네임, v37.4는 _archive/로 보존. USER_CONTEXT trial 태그 신설.
+
+> v37.3 Minor(2026-04-20) — hedge 규정 정밀화(1줄→1줄, 허위정밀 제거): 사용자 지적 "9종 필요한가 재점검" → 4중 결함(중복·누락·임의성·오탐) 진단 → 상위 레버(확신도 병기) 재발견 → 3안 제시(A원칙·B4버킷·C핵심5+원칙) → C안 채택. Before: `hedge 9종 ✗ ("수 있·듯·가능성이 있·것 같·일지도") → 단정형`. After: `hedge ✗: 수 있·가능성·같·듯·지도 + 추측·완화·전망 어미 전반 → 단정형·확신도 병기`. 효과: 허위정밀 제거, 중복(수 있 4→1) 제거, 포괄어("어미 전반")로 재현율↑, 확신도 병기 명시로 상위 레버 결합. INVARIANT 7/7 BYPASS 없음. 체크리스트 v4.2→v4.3 동기(#7 문구). 파일명 v37.2.md→v37.3.md 리네임. 독립성 trial 유지(수정 발생).
+
+> v37.2 Minor(2026-04-19) — 간결성 축 신설(3축→4축, 26줄→32줄 +23%): 사용자 지적 "중간 질문이 너무 많아졌다, 이런 설정한 적 없는데 일을 못 하겠다" → 근원 2중 진단: ①코워크 모드 시스템 프롬프트 `<ask_user_question_tool>`이 "always use before real work" 강제(형이 설정한 것 아님), ②v37.0 INTENT DEFAULT_MAP 삭제로 질문 절제 가드 공백. 3개 안 제시(가 엄격·나 중도·다 느슨) → Claude 추천 "가 엄격"(질문비용>오추정비용, [정정] 가드가 이미 복구루프 작동) → 형 "실행" 컨펌 → 간결성 축 신설 5항목: DEFAULT 추정실행·질문허용 2조건(비가역·사용자전용사실)·FAIL 명시·코워크 OVERRIDE·[추정] 1줄 고지. SELF_CHECK 3축→4축 1단어 수정. INVARIANT 7/7 보존(USER·FLOW·QUALITY 강화, TRUTH·FILES 무영향, BYPASS 없음). 체크리스트 v4.1→v4.2 동기(13번 항목 추가, FULL12→FULL13). 파일명 v37.1.md→v37.2.md 리네임. 간결성 trial 태그 신설.
