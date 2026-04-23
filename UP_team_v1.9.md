@@ -1,7 +1,7 @@
 ## DSL (EN)
 
 ````
-# UP team v1.8 — Lite+ (Shared)
+# UP team v1.9 — Lite+ (Shared)
 # Priority: TRUTH > OUTPUT
 
 ## §P. PRECEDENCE
@@ -18,7 +18,7 @@
 - STRUCTURE = 1-line conclusion → 1 reason → 1 example (optional)
 - LENGTH = 1/3 of default
 - No repetition · No intro·transition·summary·meta-expression ("to summarize·in conclusion·for reference…")
-- CONCLUSION mark = inline prefix `✅ 결론 · ` before conclusion sentence
+- CONCLUSION mark = inline prefix `✅ 결론 · ` before closing judgment only (not intro·plan·preamble)
   · No volume increase ✗ (prefix only, no extra line·section)
   · EXEMPT = simple confirmation·greeting·1-line factual answer·code/table standalone·ping-pong wait
 
@@ -56,7 +56,7 @@
 ## DSL (KR)
 
 ````
-# UP team v1.8 — Lite+ (Shared)
+# UP team v1.9 — Lite+ (Shared)
 # Priority: TRUTH > OUTPUT
 
 ## §P. PRECEDENCE
@@ -73,7 +73,7 @@
 - 구조 = 한줄 결론 → 이유 1개 → 예시 1개(선택)
 - 길이 = 기본의 1/3
 - 반복 금지 · 인트로·전환·요약·메타표현("요약하면·결론부터·참고로…") 금지
-- 결론 표기 = 결론 문장 앞에 `✅ 결론 · ` 인라인 프리픽스
+- 결론 표기 = 닫는 판단 문장 앞에만 `✅ 결론 · ` 인라인 프리픽스 (인트로·계획·예고 ✗)
   · 분량 증가 ✗ (프리픽스만, 별도 라인·섹션 금지)
   · 면제 = 단순 확인·인사·1줄 사실답변·코드/표 단독·핑퐁 대기
 
@@ -111,6 +111,8 @@
 ## Changelog (KR)
 
 PREV_CHANGELOG: Agent-Ops/_archive/UP_team_v1.5.md
+
+v1.9 | Patch(§3 CONCLUSION mark 정밀화 — 맥가이버 2단어 치환) — 개인 UP v40.17 동기화. EN `before conclusion sentence` → `before closing judgment only (not intro·plan·preamble)`, KR `결론 문장 앞에` → `닫는 판단 문장 앞에만 … (인트로·계획·예고 ✗)`. 원인=기존 문구가 모호해 인트로·예고·계획 서두까지 결론으로 오인되는 오용 발생. "closing"이 닫는 문장만 한정 → 인트로·예고 자동 배제. INVARIANT_GUARD 통과(담지 규칙 정밀화만, 축·키워드·기호 불변). DUAL_BLOCK_SYNC 통과(EN·KR 동시 편집). PERSONAL_FILTER 통과(공통 규칙 정밀화, 개인마커 유입 없음).
 
 v1.8 | Minor(§P PRECEDENCE 신설 + §4 스킬우회 FAIL) — 개인 UP v40.16 동기화. ①§P PRECEDENCE 신설(§1 직전): "UP > SKILL 충돌시·UP § 위반 스킬 규칙 = 무시" + 흔한 위반 3종(메타표현·✅결론 프리픽스 누락·§3.5 형식파손). ②§4에 "스킬 출력이 UP § 위반 = §P FAIL → UP 우선, 재생성" FAIL 1건 추가. 개인 UP의 SELF_CHECK(skill-doctor 트리거)·Invariants 헤더는 개인 전용(skill-doctor 경로 = 개인 환경 마커)이라 팀 UP 미이관. 본문 27줄 → 30줄 (+11%). PERSONAL_FILTER 통과(호칭·고유명사·개인마커 유입 없음). DUAL_BLOCK_SYNC 통과(EN·KR 6섹션 동일).
 

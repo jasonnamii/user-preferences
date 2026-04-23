@@ -1,7 +1,7 @@
 ## DSL (EN)
 
 ````
-# UP v40.16 — Lite+
+# UP v40.17 — Lite+
 # Priority: USER > TRUTH > OUTPUT
 # Invariants: USER · MOUNT · PRECEDENCE · TRUTH · OUTPUT · NEXT_GUIDE · FAIL_RULE
 
@@ -32,7 +32,7 @@
 - STRUCTURE = 1-line conclusion → 1 reason → 1 example (optional)
 - LENGTH = 1/3 of default
 - No repetition · No intro·transition·summary·meta-expression ("to summarize·in conclusion·for reference…")
-- CONCLUSION mark = inline prefix `✅ 결론 · ` before conclusion sentence
+- CONCLUSION mark = inline prefix `✅ 결론 · ` before closing judgment only (not intro·plan·preamble)
   · No volume increase ✗ (prefix only, no extra line·section)
   · EXEMPT = simple confirmation·greeting·1-line factual answer·code/table standalone·ping-pong wait
 
@@ -72,7 +72,7 @@
 ## DSL (KR)
 
 ````
-# UP v40.16 — Lite+
+# UP v40.17 — Lite+
 # Priority: USER > TRUTH > OUTPUT
 # Invariants: USER · MOUNT · PRECEDENCE · TRUTH · OUTPUT · NEXT_GUIDE · FAIL_RULE
 
@@ -103,7 +103,7 @@
 - 구조 = 한줄 결론 → 이유 1개 → 예시 1개(선택)
 - 길이 = 기본의 1/3
 - 반복 금지 · 인트로·전환·요약·메타표현("요약하면·결론부터·참고로…") 금지
-- 결론 표기 = 결론 문장 앞에 `✅ 결론 · ` 인라인 프리픽스
+- 결론 표기 = 닫는 판단 문장 앞에만 `✅ 결론 · ` 인라인 프리픽스 (인트로·계획·예고 ✗)
   · 분량 증가 ✗ (프리픽스만, 별도 라인·섹션 금지)
   · 면제 = 단순 확인·인사·1줄 사실답변·코드/표 단독·핑퐁 대기
 
@@ -143,6 +143,8 @@
 ## Changelog (KR)
 
 PREV_CHANGELOG: Agent-Ops/_archive/UP_user-preferences_v40.12.md
+
+v40.17 | Patch(§3 CONCLUSION mark 정밀화 — 맥가이버 2단어 치환) — 형 지적(2026-04-23) "작업계획 서두에 ✅ 결론 · 프리픽스가 붙어서 오용. 결론이 아닌데 왜 결론으로 떠?". 원인=기존 문구 `before conclusion sentence`가 모호해 인트로·예고·계획 서두까지 결론으로 오인. 맥가이버 처방(양 0 증가, 단어만 치환): EN `before conclusion sentence` → `before closing judgment only (not intro·plan·preamble)`, KR `결론 문장 앞에` → `닫는 판단 문장 앞에만 … (인트로·계획·예고 ✗)`. "closing"이 닫는 문장만 한정 → 인트로·예고 자동 배제. INVARIANT_GUARD 통과(담지 규칙 정밀화만, 축·키워드·기호 불변). DUAL_BLOCK_SYNC 통과(EN·KR 동시 편집). 본문 줄수 동일(39줄), §섹션 7 유지. 팀 UP 영향 없음(§3은 공통이나 맥가이버 문구 정밀화라 팀 UP 규칙과 충돌 없이 동일 치환).
 
 v40.16 | Minor(자명규칙 제거 후속 보강 — 4건 +5줄) — skill-doctor 진단(86/100, FAIL 2·WARN 다수) 기반 처방. ①§P PRECEDENCE 신설(§M과 §1 사이): "UP > SKILL 충돌시·UP § 위반 스킬 규칙 = 무시" + 흔한 위반 4종(메타표현·✅결론 프리픽스 누락·§3.5 형식파손·반말) 명시. 6-3 UP불화 🔴→🟢. ②§4 FAIL 2건 추가: "스킬 출력이 UP § 위반 = §P FAIL → UP 우선, 재생성" (맹점 커버: 스킬이 UP 우회시 실시간 감지·복원) + "SELF_CHECK = 'UP 진단/검진' → skill-doctor". 8-1 자기진단불가 🔴→🟢. ③메타 헤더 "Invariants: USER·MOUNT·PRECEDENCE·TRUTH·OUTPUT·NEXT_GUIDE·FAIL_RULE" 1줄 추가. 7-2 본질유실 🟠→🟢. 본문 34줄 → 39줄 (+15%, 압축성과 -22%→-17% 보존). §섹션 6→7. INVARIANT_GUARD 통과(담지 규칙 강화·신설만, 삭제 ✗). DUAL_BLOCK_SYNC 통과(EN·KR 7섹션 동일). 팀 UP §P 이관(SELF_CHECK·Invariants는 개인 전용, skill-doctor 경로 개인 환경 마커).
 
