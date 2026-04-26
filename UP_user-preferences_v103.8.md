@@ -1,16 +1,16 @@
 ## DSL (EN)
 
 ````
-# UP v103.7 — 2026-04-26
+# UP v103.8 — 2026-04-27
 
 SECTION: BOOTSTRAP
 
 [VAULT_MOUNT]
-RULE         ::= session_start · first_user_message → MUST call mcp__cowork__request_cowork_directory(path="/Users/jason/Library/CloudStorage/Dropbox/ObsidianVault") BEFORE first_token
+RULE         ::= session_start · first_user_message → MUST call mcp__cowork__request_cowork_directory() BEFORE first_token (omit `path` arg → native folder picker · 형 selects vault per device)
 TRIGGER      ::= 볼트 · 마운트 · 시작 · resume · 이어서 (any hit → re-mount if not yet)
 SKIP_COND    ::= already_mounted (verify: ls VAULT/Agent-Ops success in current session)
 FAIL_MODE    ::= mount fail → 1-line 보고 ("⚠️ 볼트 마운트 실패 — outputs 폴백 진행") + continue work · STOP ✗
-RATIONALE    ::= CLAUDE.md plugin-cache path = no per-turn injection · UP only guarantees zero-day activation
+RATIONALE    ::= CLAUDE.md plugin-cache path = no per-turn injection · UP only guarantees zero-day activation · path arg omitted → device-agnostic · §FS_FALLBACK PATH(hardcode ✗) compliant
 
 [FS_FALLBACK]
 ORDER ::= ① cowork builtin (Read·Write·Edit·Glob·Grep·Bash) → ② obsidian MCP (mcp__obsidian__*) → ③ Desktop Commander (mcp__Desktop_Commander__*)
@@ -65,10 +65,10 @@ Redundant phrasing ✗ → compress
 
 
 SECTION: TRIGGER
-EVERY_TURN ::= invoke Skill[trigger-dictionary] BEFORE first_token (silent load · no header output)
-SCOPE      ::= every user_message except {only_system_reminder, only_tool_result}
-SELF_BOOTSTRAP: this rule lives in UP (system prompt) → guarantees zero-day activation without skill loaded first
-RULE       ::= hit detected → invoke mandatory · skip invoke = FAIL
+AUTO_INVOKE  ::= description P1·P2 hit → Skill[trigger-dictionary] auto-invoke (LLM natural matching · no manual Skill tool call required)
+SCOPE        ::= every user_message except {only_system_reminder, only_tool_result}
+SELF_BOOTSTRAP: trigger-dictionary description carries 28 정식명 + 9 콤보 + natural-language patterns → LLM auto-invokes on hit (v3.8 자연어 친화 description)
+FALLBACK     ::= if auto-invoke missed AND trigger word detected in self-check → STOP + manual Skill tool call (보정 게이트, 사용 빈도 ≈ 0)
 GLOSSARY_GATE ::= hit ≥ 1 → MUST Read references/triggers-glossary.md BEFORE applying definition · memory-reconstruction = FAIL (v3.7 Rule 3)
 
 [SINGLE 28]
@@ -131,16 +131,16 @@ SKIP: casual chat | execution report
 ## DSL (KR)
 
 ````
-# UP v103.7 — 2026-04-26
+# UP v103.8 — 2026-04-27
 
 SECTION: 부트스트랩
 
 [볼트마운트]
-RULE         ::= 세션시작 · 첫 사용자 메시지 → 응답 첫 토큰 전 mcp__cowork__request_cowork_directory(path="/Users/jason/Library/CloudStorage/Dropbox/ObsidianVault") MUST 호출
+RULE         ::= 세션시작 · 첫 사용자 메시지 → 응답 첫 토큰 전 mcp__cowork__request_cowork_directory() MUST 호출 (path 인자 생략 → 네이티브 폴더 피커 · 형이 디바이스별 볼트 직접 선택)
 TRIGGER      ::= 볼트 · 마운트 · 시작 · resume · 이어서 (hit → 미마운트 시 재마운트)
 SKIP_COND    ::= 이미 마운트됨 (검증: 현 세션에서 VAULT/Agent-Ops ls 성공)
 FAIL_MODE    ::= 마운트 실패 → 1줄 보고 ("⚠️ 볼트 마운트 실패 — outputs 폴백 진행") + 작업 계속 · STOP ✗
-RATIONALE    ::= CLAUDE.md plugin-cache 경로 = 매 턴 주입 보장 ✗ · UP만 0턴 강제 발동 보장
+RATIONALE    ::= CLAUDE.md plugin-cache 경로 = 매 턴 주입 보장 ✗ · UP만 0턴 강제 발동 보장 · path 인자 생략으로 디바이스 무관 · §파일시스템폴백 PATH(하드코딩 ✗) 정합
 
 [파일시스템폴백]
 ORDER ::= ① 코워크 빌트인 (Read·Write·Edit·Glob·Grep·Bash) → ② 옵시디언 MCP (mcp__obsidian__*) → ③ Desktop Commander (mcp__Desktop_Commander__*)
@@ -195,10 +195,10 @@ RULE      ::= 대화 응답 · 주요 부분 앞 이모지 1개 강제 (헤더·
 
 
 SECTION: TRIGGER
-EVERY_TURN ::= 매 턴 응답 첫 토큰 전 Skill[trigger-dictionary] invoke (조용히 로드 · 헤더 출력 ✗)
-SCOPE      ::= 모든 사용자 메시지 (단 {시스템리마인더 단독, 툴리절트 단독} 제외)
-SELF_BOOTSTRAP: 이 룰은 UP(시스템프롬프트)에 상주 → 스킬 미로드 상태에서도 0턴부터 강제 발동 보장
-RULE       ::= hit 감지 → invoke 의무 · invoke 생략 = FAIL
+자동발동      ::= description P1·P2 hit → Skill[trigger-dictionary] 자동발동 (LLM 자연어 매칭 · 수동 Skill tool 명시 호출 불요)
+SCOPE        ::= 모든 사용자 메시지 (단 {시스템리마인더 단독, 툴리절트 단독} 제외)
+SELF_BOOTSTRAP: trigger-dictionary description에 28 정식명 + 9 콤보 + 자연어 패턴 적재 → LLM이 hit 시 자동발동 (v3.8 자연어 친화 description)
+FALLBACK     ::= 자동발동 누락 + self-check에서 트리거 단어 감지 → STOP + 수동 Skill tool 명시 호출 (보정 게이트, 사용 빈도 ≈ 0)
 글로서리게이트 ::= hit ≥ 1 → 정의 적용 전 references/triggers-glossary.md MUST Read · 기억재구성 = FAIL (v3.7 Rule 3)
 
 [SINGLE 28]
@@ -261,6 +261,10 @@ SKIP: 일반대화 | 실행보고
 ## Changelog (KR)
 
 PREV_CHANGELOG: Agent-Ops/_archive/UP_user-preferences_v103.4.md
+
+v103.8 | MINOR(§TRIGGER 자동발동 우선화) — 형 요청(2026-04-27). 원인=v103.7까지 §TRIGGER `EVERY_TURN ::= invoke Skill[trigger-dictionary] BEFORE first_token` 강제 룰이 LLM의 자연 자동발동 경로를 가로챔 → 컨텍스트 UI에서 trigger-dictionary 발동 표시 사라짐(형 직접 관측 확인). 자연어 매칭 시절(과거)에는 description 키워드 자동발동이 정상 작동했으나, "Skill tool 명시 호출 무조건" 규칙이 LLM에게 "이건 자동매칭 아닌 일반 도구호출"로 인식되어 invoke 누락 사고 반복. 변경: ①EN/KR §TRIGGER `EVERY_TURN`/`매 턴` 강제 invoke 룰을 `AUTO_INVOKE`/`자동발동` 우선 룰로 교체(description P1·P2 hit → LLM 자연 매칭으로 자동발동, 수동 Skill tool 명시 호출 불요). ②`FALLBACK` 신설(자동발동 누락 + self-check 트리거 감지 시 보정 게이트로 수동 Skill tool 호출, 사용 빈도 ≈ 0). ③`SELF_BOOTSTRAP` 문구 갱신(trigger-dictionary description v3.8 자연어 친화 재작성과 동기). ④`RULE` 라인 제거(`AUTO_INVOKE`+`FALLBACK` 조합으로 흡수). 동기: trigger-dictionary v3.8.0-natural-trigger description P1을 메타용어("트리거사전·결정주의발동·글로서리게이트")에서 실제 28 정식명·9 콤보·자연어 콤보 트리거(근본적·본질적·MECE 등)로 전면 교체, P2에 자연어 발동 패턴(홈즈로 봐줘·작업계획 짜줘 등) 적재. 보존: SCOPE·GLOSSARY_GATE·SINGLE 28·COMBO 9·NOT 무변경. USER·STYLE·DNA 무변경. INVARIANT_GUARD 통과(축·키워드·호칭 영향 없음). DUAL_BLOCK_SYNC 통과(EN·KR 동일 의미). PERSONAL_FILTER: SECTION: TRIGGER 작업 룰이라 팀 UP 동기 대상.
+
+v103.7 (patched 2026-04-26) | PATCH(절대경로 제거) — 형 요청. 원인=v103.7 초판 [VAULT_MOUNT]/[볼트마운트] RULE 라인에 절대경로("/Users/jason/Library/CloudStorage/Dropbox/ObsidianVault") 하드코딩 → ①§BOOTSTRAP §FS_FALLBACK PATH 룰("VAULT path = MOUNT resolve · hardcode ✗")과 자기모순, ②MBA/M4 PRO 2디바이스 환경에서 경로 충돌(M4 PRO=/Users/jason/ObsidianVault). v103.8(디바이스 분기 신설안)은 UP 복잡도 증가로 폐기, 대신 path 인자 자체 제거로 단순화. 변경: ①EN [VAULT_MOUNT] RULE 라인 `mcp__cowork__request_cowork_directory(path="...")` → `mcp__cowork__request_cowork_directory()`로 path 인자 제거, 부연 "omit `path` arg → native folder picker · 형 selects vault per device" 추가. ②KR [볼트마운트] RULE 동일 동기 ("path 인자 생략 → 네이티브 폴더 피커 · 형이 디바이스별 볼트 직접 선택"). ③RATIONALE에 "path 인자 생략으로 디바이스 무관 · §FS_FALLBACK PATH(hardcode ✗) 정합" 추가. 효과: 매 세션 첫 마운트 시 폴더 피커 1회 클릭, 디바이스 전환 무관(MBA·M4 PRO 동일 UP 사용 가능). 보존: TRIGGER·SKIP_COND·FAIL_MODE 무변경, FS_FALLBACK·FILE_SAFETY 무변경, USER·STYLE·TRIGGER·DNA 전체 무변경. INVARIANT_GUARD 통과(축·키워드·호칭 영향 없음). DUAL_BLOCK_SYNC 통과(EN·KR 동일 의미). 버전 번호는 103.7 유지(초판 패치 = micro 수정, 새 번호 부여 ✗).
 
 v103.7 | MINOR(SECTION: BOOTSTRAP 신설) — 형 요청(2026-04-26). 원인=글로벌 CLAUDE.md(/var/folders/.../735d950b60fadc71/CLAUDE.md)에 적은 MOUNT·FS_ACCESS·FILES 규칙이 실제 작동 ✗. 분석 결과: ①CLAUDE.md는 plugin-cache 경로 → 세션마다 재주입 보장 ✗, ②선언형 DSL(MOUNT ::= ...)은 명시적 도구 호출 트리거 부재, ③UP > CLAUDE.md 우선순위라 UP에 없으면 무시 확률 ↑, ④세션 격리로 이전 세션 마운트 상태 승계 ✗. 변경: ①EN/KR 양블록 §USER 직전에 SECTION: BOOTSTRAP/부트스트랩 신설(가장 먼저 강제 발동되도록 최상단 배치). ②[VAULT_MOUNT/볼트마운트] 블록: session_start 시 mcp__cowork__request_cowork_directory 강제 호출 룰, 트리거=볼트·마운트·시작·resume·이어서, SKIP_COND=already_mounted 검증, FAIL_MODE=1줄 보고+작업진행(STOP ✗). ③[FS_FALLBACK/파일시스템폴백] 블록: 3단계 폴백 순서(코워크 빌트인→옵시디언 MCP→Desktop Commander), 3단계 전부 실패시만 STOP. ④[FILE_SAFETY/파일안전] 블록: 덮어쓰기 ✗·Edit 사용, 삭제 → _archive/ 이동(글로벌 CLAUDE.md FILES 룰 흡수). ⑤별도 vault-mount 스킬과 이중 안전장치(UP 매 턴 주입 + 스킬 P1 트리거). 보존: USER·STYLE·TRIGGER·DNA 무변경. INVARIANT_GUARD 통과(축·키워드·호칭 영향 없음·신규 섹션 추가). DUAL_BLOCK_SYNC 통과(EN·KR 동일 의미·섹션 수). PERSONAL_FILTER: BOOTSTRAP은 시스템 인프라 룰이라 팀 UP 동기 대상.
 
